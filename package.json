@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/giowe/express-explorer/issues"
   },
-  "homepage": "https://github.com/giowe/express-explorer#readme"
+  "homepage": "https://github.com/giowe/express-explorer#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
