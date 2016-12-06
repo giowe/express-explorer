@@ -1,8 +1,9 @@
 'use strict';
 const express = require('express');
+const explorer = require('./express-explorer')(express);
 const app = new express();
 const router = express.Router();
-const explorer = require('./express-explorer');
+const http = require('http');
 
 app.use('/explorer', explorer);
 
@@ -24,8 +25,10 @@ app.use('/explorer', explorer);
  });
 });
 
-app.use('/router', router);
+app.use('/rout', router);
 
 app.listen(8080, () => {
-  console.log('Listening on port 8080');  
+  console.log('Listening on port 8080');
+  console.log('Requiring /explorer');  
+  http.get('http://localhost:8080/explorer');
 });
