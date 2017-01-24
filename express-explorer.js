@@ -52,9 +52,19 @@ Router.use = function use(fn) {
 };
 
 
-module.exports = (req, res) => {
-  console.log(routes);
-  res.send('explorer');
+module.exports = (options) => {
+  this.options = Object.assign({
+    view: 'json'
+  }, options);
+
+  return (req, res) => {
+    console.log(routes);
+    if (this.options.view === 'json') {
+      res.json(routes);
+    } else {
+      res.send('todo');
+    }
+  };
 };
 
 function dig(stack, prefix) {
