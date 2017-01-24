@@ -1,15 +1,17 @@
 'use strict';
+const explorer = require('./lib/express-explorer');
 const express = require('express');
-const explorer = require('./express-explorer');
 const app = new express();
 const router = express.Router();
 const http = require('http');
 
-app.use('/explorer', explorer());
+app.use('/explorer', explorer({view: 'html'}));
 
 const getParams = (path) => {
     return [ path, (req, res) => { res.send('ok! ' + path)} ];
 };
+
+app.use('/rout', router);
 
 [
   '/home',
@@ -33,11 +35,9 @@ const getParams = (path) => {
   });
 });
 
-app.use('/rout', router);
-
-/*app.get(...getParams('/appget'));
-router.get(...getParams('/routerget'));
-app.use('/rirrorarro', router);*/
+router.all('omni', (req, res) => {
+  res.send('omni');
+});
 
 app.listen(8080, () => {
   console.log('Listening on port 8080');
