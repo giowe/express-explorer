@@ -1,6 +1,6 @@
 {
   "name": "express-explorer",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "",
   "main": "express-explorer.js",
   "scripts": {
@@ -16,5 +16,7 @@
     "url": "https://github.com/giowe/express-explorer/issues"
   },
   "homepage": "https://github.com/giowe/express-explorer#readme",
-  "dependencies": {}
+  "dependencies": {
+    "ejs": "^2.5.5"
+  }
 }
