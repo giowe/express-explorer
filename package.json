@@ -18,5 +18,8 @@
   "homepage": "https://github.com/giowe/express-explorer#readme",
   "dependencies": {
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "prettyjson": "^1.2.1"
   }
 }
