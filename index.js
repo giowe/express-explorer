@@ -1,5 +1,5 @@
 'use strict';
-const explorer = require('./lib/express-explorer');
+const explorer = require('./src/express-explorer');
 const express = require('express');
 const app = new express();
 const router = express.Router();
@@ -41,5 +41,5 @@ router.all('omni', (req, res) => {
 
 app.listen(8080, () => {
   console.log('Listening on port 8080');
-  http.get('http://localhost:8080/explorer');
+  //http.get('http://localhost:8080/explorer');
 });

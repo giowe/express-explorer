@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/giowe/express-explorer#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "ejs": "^2.5.5"
   },
   "devDependencies": {
-    "prettyjson": "^1.2.1"
+    "express": "^4.14.0",
+    "gulp": "^3.9.1"
   }
 }
