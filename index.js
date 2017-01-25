@@ -35,7 +35,7 @@ app.use('/rout', router);
   });
 });
 
-router.all('omni', (req, res) => {
+router.all('/omni', (req, res) => {
   res.send('omni');
 });
 
