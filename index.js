@@ -5,7 +5,7 @@ const app = new express();
 const router = express.Router();
 const http = require('http');
 
-app.use('/explorer', explorer({view: 'html'}));
+app.use('/explorer', explorer());
 
 const getParams = (path) => {
     return [ path, (req, res) => { res.send('ok! ' + path)} ];
@@ -35,7 +35,7 @@ app.use('/rout', router);
   });
 });
 
-router.all('/omni', (req, res) => {
+router.all('omni', (req, res) => {
   res.send('omni');
 });
 

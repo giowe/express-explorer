@@ -57,17 +57,16 @@ Router.use = function use(fn) {
 
 module.exports = (options) => {
   this.options = Object.assign({
-    view: 'json'
+    format: 'html'
   }, options);
 
   return (req, res) => {
     dig(req.app._router.stack);
+    const query = req.query || {};
 
-    if (this.options.view === 'json') {
-      res.json(routes);
-    } else {
-      res.send(ejs.render(template, {routes}));
-    }
+    const format = query.format || this.options.format;
+    if (format === 'json') res.json(routes);
+    else res.send(ejs.render(template, {routes}));
   };
 };
 
@@ -78,10 +77,10 @@ function dig(stack, prefix) {
     if (layer.name === 'router') {
       dig(layer.handle.stack, layer.handle.mountPath);
     } else if (route) {
-      const path = (prefix + route.path).replace(/\/\//g, '/');
+      const routePath = path.join(prefix, route.path);
       const methods = route.methods;
 
-      routes[path] = Object.assign({}, routes[path], methods);
+      routes[routePath] = Object.assign({}, routes[routePath], methods);
     }
   });
 
