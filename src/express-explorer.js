@@ -8,7 +8,7 @@ const fs      = require('fs');
 const ejs     = require('ejs');
 const path    = require('path');
 
-const template = fs.readFileSync(path.join(__dirname, './view.ejs')).toString();
+const template = fs.readFileSync(path.join(__dirname, './static/views/index.ejs')).toString();
 
 const routes = {};
 
@@ -54,6 +54,20 @@ Router.use = function use(fn) {
   return this;
 };
 
+const getParams = (route) => {
+    const segments = route.split('/');
+    let params = [];
+
+    for (let i = 0; i < segments.length; i++) {
+        let segment = segments[i];
+
+        if (segment[0] == ":") {
+            params.push(segment.slice(1));
+        }
+    }
+
+    return params;
+};
 
 module.exports = (options) => {
   this.options = Object.assign({
@@ -66,7 +80,7 @@ module.exports = (options) => {
 
     const format = query.format || this.options.format;
     if (format === 'json') res.json(routes);
-    else res.send(ejs.render(template, {routes}));
+    else res.send(ejs.render(template, {routes, 'SF Express Explorer', '', '', getParams}));
   };
 };
 

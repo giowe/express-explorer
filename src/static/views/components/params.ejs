@@ -1,0 +1,16 @@
+<section class="paramsSection" id="<%= baseID + '-container-params' %>">
+    <p><%= title %></p>
+    <section class="param" id="<%= baseID + '-params-0' %>" index="0">
+        <input type="text" placeholder="key"
+               target="<%= title %>"
+               id="<%= baseID + '-key-0' %>"
+               onfocus="addParam(this,'<%= baseID + '-params-0' %>','<%= baseID + '-container-params' %>')">
+        </input>
+        <input type="text" placeholder="value"
+               target="<%= title %>"
+               id="<%= baseID + '-value-0' %>"></input>
+        <button type="button" class="pure-button-secondary deleteBtn"
+                onclick="deleteParam(this)">X
+        </button>
+    </section>
+</section>

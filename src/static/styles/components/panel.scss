@@ -1,0 +1,39 @@
+.panel {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #E6F3F6;
+  border-top: solid 1px grey;
+
+  section {
+    display: block;
+  }
+
+  .sendBtn {
+    width: 20%;
+    margin: 2% 40%;
+  }
+
+  .closer {
+    margin-bottom: 0;
+  }
+
+}
+
+@media(max-width: 767px) {
+
+  .panel {
+    overflow-x: hidden;
+
+    .sendBtn {
+      width: 30%;
+    }
+
+    input {
+      max-width: 120px !important;
+    }
+  }
+
+}
+
+

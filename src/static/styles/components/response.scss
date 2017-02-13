@@ -1,0 +1,17 @@
+.infoSect {
+
+  h4 {
+    margin-bottom: 0.5%;
+  }
+
+  ul {
+    font-size: 13px;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .responseSect .pure-u-1-3 {
+    width: 101%;
+  }
+}

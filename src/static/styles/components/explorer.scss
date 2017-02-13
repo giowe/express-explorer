@@ -1,0 +1,45 @@
+@import "../shared/variables";
+@import "../shared/animations";
+
+$listWidth: 100%;
+$itemBorder: 1px solid #dddddd;
+$itemColor: #686868;
+
+.container {
+  padding: 80px $pageHorizontalPadding 0 $pageHorizontalPadding;
+}
+
+.explorer {
+  width: $listWidth;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+
+    .item {
+      border-bottom: $itemBorder;
+      color: $itemColor;
+      margin: 1% 0;
+      font-family: 'Droid Sans';
+    }
+
+  }
+}
+
+.heading {
+  font-size: 25px;
+}
+
+.heading:hover {
+  color: black;
+}
+
+.method-list li {
+  margin: 2% 0;
+}
+
+@media(max-width: 767px) {
+  .container {
+    padding: 80px $pageHorizontalPaddingMobile 0 $pageHorizontalPaddingMobile;
+  }
+}

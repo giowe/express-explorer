@@ -1,0 +1,19 @@
+@import "../shared/variables";
+@import "explorer";
+
+footer {
+  margin: 0 $pageHorizontalPadding;
+  font-size: 15px;
+
+  p {
+    color: $itemColor;
+    padding: 10px 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  footer {
+    margin: 0 $pageHorizontalPaddingMobile;
+  }
+}

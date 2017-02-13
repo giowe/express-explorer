@@ -1,0 +1,42 @@
+@import "../shared/variables";
+
+$elementPadding: 7px;
+
+.method-container {
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  font-size: 18px;
+  background-color: #E6F3F6;
+}
+
+.right {
+  position: absolute;
+  right: 1%;
+  padding-top: 3px;
+  font-size: 13px;
+}
+
+@media(max-width: 767px) {
+  .right {
+    display: none;
+  }
+}
+
+@mixin block($bg-color) {
+  padding: $elementPadding;
+  color: white;
+  background-color: $bg-color;
+  text-transform: uppercase;
+}
+
+@each $method in $expressMethods {
+  $i: index($expressMethods, $method);
+  .#{$method} {
+    @include block(rgb(random(256), random(256), random(256)));
+  }
+}
+
+
+

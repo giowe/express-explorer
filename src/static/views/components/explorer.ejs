@@ -1,0 +1,20 @@
+<section class="container">
+    <section class="explorer">
+        <h2 class="panel-title"><%= name %></h2>
+        <ul>
+            <% Object.keys(routes).forEach(route => { %>
+            <li class="item">
+                <span class="heading" onclick="showMethodList('<%= route %>','method')"><%= route %></span>
+            </li>
+            <ul class="method-list slide-up" id="<%= route %>">
+                <% Object.keys(routes[route]).forEach( method => { %>
+                <li>
+                    <%- include('./method.ejs', {method,route}) %>
+                </li>
+                <% }) %>
+            </ul>
+            <% }) %>
+        </ul>
+    </section>
+</section>
+

@@ -1,0 +1,12 @@
+@import "../shared/variables";
+
+.pure-menu {
+  position: fixed;
+  background-color: $barColor;
+  z-index: 1;
+}
+
+.pure-menu-heading, .pure-menu-list a {
+  color: white !important;
+}
+

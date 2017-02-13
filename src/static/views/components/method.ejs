@@ -1,0 +1,6 @@
+<div class="method-container" onclick="showMethodList('<%= (route + "/" + method) %>', 'panel')">
+    <span class="<%= method %>"><%= method %></span>
+    <span><%= route %> </span>
+    <span class="right">Find all instances of the model</span>
+</div>
+<%- include('./panel.ejs',{method,route}) %>
