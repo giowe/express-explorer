@@ -1,6 +1,6 @@
 <section class="container">
     <section class="explorer">
-        <h2 class="panel-title"><%= name %></h2>
+        <h2 class="panel-title"><%= projectName %></h2>
         <ul>
             <% Object.keys(routes).forEach(route => { %>
             <li class="item">
@@ -9,7 +9,7 @@
             <ul class="method-list slide-up" id="<%= route %>">
                 <% Object.keys(routes[route]).forEach( method => { %>
                 <li>
-                    <%- include('./method.ejs', {method,route}) %>
+                    <%- include('./components/method.ejs', {method,route}) %>
                 </li>
                 <% }) %>
             </ul>

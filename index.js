@@ -6,6 +6,8 @@ const router = express.Router();
 const http = require('http');
 
 app.use('/explorer', explorer());
+app.use('/', express.static('dist/static'));
+
 
 const getParams = (path) => {
     return [ path, (req, res) => { res.send('ok! ' + path)} ];

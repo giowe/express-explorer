@@ -10,24 +10,35 @@ gulp.task('connect', shell.task([
     'node .',
 ]));
 
+gulp.task('clean', () => {
+  //todo
+});
+
 gulp.task('sass', () => {
-    gulp.src('./src/styles/index.scss')
+    gulp.src('./src/static/styles/index.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('styles.min.css'))
         .pipe(cleanCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./dist/static'));
 });
 
 gulp.task('js', () => {
-    gulp.src('./src/scripts/**/*.js')
+    gulp.src('./src/static/scripts/**/*.js')
         .pipe(concat('scripts.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./dist/static'));
 });
 
 gulp.task('watch', () => {
-    gulp.watch('./src/styles/**/*.scss', ['sass']);
-    gulp.watch('./src/scripts/**/*.js', ['js']);
+    gulp.watch('./src/static/styles/**/*.scss', ['sass']);
+    gulp.watch('./src/static/scripts/**/*.js', ['js']);
+});
+
+gulp.task('dist', ['clean', 'sass', 'js'], () => {
+  //todo
+
+  //copiare pkg
+  //copiare views e express-explorer.js
 });
 
 gulp.task('default', ['js', 'sass', 'watch']);

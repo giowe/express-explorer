@@ -8,8 +8,6 @@ const fs      = require('fs');
 const ejs     = require('ejs');
 const path    = require('path');
 
-const template = fs.readFileSync(path.join(__dirname, './static/views/index.ejs')).toString();
-
 const routes = {};
 
 Router.use = function use(fn) {
@@ -71,7 +69,8 @@ const getParams = (route) => {
 
 module.exports = (options) => {
   this.options = Object.assign({
-    format: 'html'
+    format: 'html',
+    projectName: 'Test'
   }, options);
 
   return (req, res) => {
@@ -80,7 +79,17 @@ module.exports = (options) => {
 
     const format = query.format || this.options.format;
     if (format === 'json') res.json(routes);
-    else res.send(ejs.render(template, {routes, 'SF Express Explorer', '', '', getParams}));
+    else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
+      routes,
+      projectName: this.options.projectName,
+      getParams
+    }, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send(err);
+      }
+      res.send(result);
+    });
   };
 };
 

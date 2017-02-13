@@ -9,7 +9,7 @@ var createRequest = function (route, method) {
     var request = {
         method: method,
         headers: headers,
-        url: 'http://localhost:4000' + url
+        url: url
     };
 
     if (method == 'put' || method == 'post') {
