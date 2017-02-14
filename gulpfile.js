@@ -6,13 +6,14 @@ const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
+const del = require('del');
 
 gulp.task('connect', shell.task([
-  'node .',
+  'node .'
 ]));
 
 gulp.task('clean', () => {
-  //todo
+  return del.sync('./dist');
 });
 
 gulp.task('sass', () => {
