@@ -9,6 +9,13 @@ const Router  = require('express/lib/router');
 const fs      = require('fs');
 const ejs     = require('ejs');
 
+let pkg;
+try {
+  pkg = require('../../package.json');
+} catch(err) {
+  pkg = {}
+}
+
 const routes = {};
 
 Router.use = function use(fn) {
@@ -70,13 +77,12 @@ const getParams = (route) => {
 
 module.exports = (options) => {
   this.options = Object.assign({
-    format: 'html',
-    projectName: 'Test'
+    format: 'html'
   }, options);
 
-  console.log(path.join(__dirname, 'static'))
   return [
     express.static(path.join(__dirname, 'static')),
+
     (req, res) => {
       dig(req.app._router.stack);
       const query = req.query || {};
@@ -85,7 +91,10 @@ module.exports = (options) => {
       if (format === 'json') res.json(routes);
       else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
         routes,
-        projectName: this.options.projectName,
+        project: {
+          name: 'testnamae',
+          version: 'testversion'
+        },
         getParams
       }, (err, result) => {
         if (err) {

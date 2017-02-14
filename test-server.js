@@ -6,8 +6,6 @@ const router = express.Router();
 const http = require('http');
 
 app.use('/explorer', explorer());
-//app.use('/', express.static('dist/static'));
-
 
 //todo @messo questo che roba è ? si può cavare no ?
 /*const getParams = (path) => {
@@ -15,7 +13,6 @@ app.use('/explorer', explorer());
 };*/
 
 app.use('/rout', router);
-
 [
   '/home',
   '/contacts',
