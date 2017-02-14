@@ -8,7 +8,6 @@ const http = require('http');
 app.use('/explorer', explorer());
 app.use('/', express.static('dist/static'));
 
-
 const getParams = (path) => {
     return [ path, (req, res) => { res.send('ok! ' + path)} ];
 };
@@ -43,5 +42,4 @@ router.all('omni', (req, res) => {
 
 app.listen(8080, () => {
   console.log('Listening on port 8080');
-  //http.get('http://localhost:8080/explorer');
 });

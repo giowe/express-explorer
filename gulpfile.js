@@ -1,16 +1,12 @@
 'use strict';
 const gulp = require('gulp');
-const shell = require('gulp-shell');
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
+const nodemon = require('gulp-nodemon');
 const del = require('del');
-
-gulp.task('connect', shell.task([
-  'node .'
-]));
 
 gulp.task('clean', () => {
   return del.sync('./dist');
@@ -34,16 +30,30 @@ gulp.task('js', () => {
     .pipe(gulp.dest('./dist/static'));
 });
 
+gulp.task('views', () => {
+  gulp.src(['./src/views/**/*'])
+    .pipe(gulp.dest('./dist/views'));
+});
+
+gulp.task('root-files', () => {
+  gulp.src(['./src/express-explorer.js', './src/package.json'])
+    .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('watch', () => {
   gulp.watch('./src/static/styles/**/*.scss', ['sass']);
-  gulp.watch('./src/static/scripts/**/*.js', ['js']);
+  gulp.watch('./src/static/scripts/**/*.js',  ['js']);
+  gulp.watch('./src/views/**/*',              ['views']);
+  gulp.watch(['./src/express-explorer.js', './src/package.json'], ['root-files']);
 });
 
-gulp.task('dist', ['clean', 'sass', 'js'], () => {
-  //todo
+gulp.task('dist', ['clean', 'sass', 'js', 'views', 'root-files']);
 
-  //copiare pkg
-  //copiare views e express-explorer.js
+gulp.task('serve', ['dist'], () => {
+  nodemon({
+    script: 'test-server.js',
+    watch: ['test-server.js', 'src/express-explorer.js', 'src/package.json']
+  })
 });
 
-gulp.task('default', ['js', 'sass', 'watch']);
+gulp.task('default', ['serve', 'watch']);
