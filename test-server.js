@@ -1,5 +1,5 @@
 'use strict';
-const explorer = require('./src/express-explorer');
+const explorer = require('./build/express-explorer');
 const express = require('express');
 const app = new express();
 const router = express.Router();

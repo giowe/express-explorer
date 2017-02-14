@@ -2,11 +2,12 @@
 const flatten = require('array-flatten');
 const slice   = Array.prototype.slice;
 const debug   = require('debug')('express:router');
+const express = require('express');
+const path    = require('path');
 const Layer   = require('express/lib/router/layer');
 const Router  = require('express/lib/router');
 const fs      = require('fs');
 const ejs     = require('ejs');
-const path    = require('path');
 
 const routes = {};
 
@@ -73,24 +74,28 @@ module.exports = (options) => {
     projectName: 'Test'
   }, options);
 
-  return (req, res) => {
-    dig(req.app._router.stack);
-    const query = req.query || {};
+  console.log(path.join(__dirname, 'static'))
+  return [
+    express.static(path.join(__dirname, 'static')),
+    (req, res) => {
+      dig(req.app._router.stack);
+      const query = req.query || {};
 
-    const format = query.format || this.options.format;
-    if (format === 'json') res.json(routes);
-    else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
-      routes,
-      projectName: this.options.projectName,
-      getParams
-    }, (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.send(err);
-      }
-      res.send(result);
-    });
-  };
+      const format = query.format || this.options.format;
+      if (format === 'json') res.json(routes);
+      else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
+        routes,
+        projectName: this.options.projectName,
+        getParams
+      }, (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.send(err);
+        }
+        res.send(result);
+      });
+    }
+  ];
 };
 
 function dig(stack, prefix) {
