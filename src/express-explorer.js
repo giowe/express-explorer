@@ -91,10 +91,7 @@ module.exports = (options) => {
       if (format === 'json') res.json(routes);
       else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
         routes,
-        project: {
-          name: 'testnamae',
-          version: 'testversion'
-        },
+        project: pkg,
         getParams
       }, (err, result) => {
         if (err) {
