@@ -1,28 +1,6 @@
-@mixin base-slide($animation) {
+.slider {
   max-height: 0;
-  overflow-y: hidden;
-  -webkit-transition: $animation;
-  -moz-transition: $animation;
-  -o-transition: $animation;
-  transition: $animation;
-}
-
-@mixin base-slide-down($height) {
-  max-height: $height;
-}
-
-.slide-up, .slide-down-method, .slide-down-panel, .slide-down-response {
-  @include base-slide(max-height 0.8s ease-in-out);
-}
-
-.slide-down-method {
-  @include base-slide-down(1400px)
-}
-
-.slide-down-panel {
-  @include base-slide-down(1200px)
-}
-
-.slide-down-response {
-  @include base-slide-down(500px)
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease 0s;
 }

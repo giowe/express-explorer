@@ -1,20 +1,20 @@
 <section class="container">
-    <section class="explorer">
-        <h2 class="panel-title"><%= project.name %></h2>
-        <ul>
-            <% Object.keys(routes).forEach(route => { %>
-            <li class="item">
-                <span class="heading" onclick="showMethodList('<%= route %>','method')"><%= route %></span>
-            </li>
-            <ul class="method-list slide-up" id="<%= route %>">
-                <% Object.keys(routes[route]).forEach( method => { %>
-                <li>
-                    <%- include('./components/method.ejs', {method,route}) %>
-                </li>
-                <% }) %>
-            </ul>
-            <% }) %>
-        </ul>
-    </section>
+  <section class="explorer">
+    <h2 class="panel-title"><!--<%= project.name %>--> Express-Explorer-Dev-Server</h2>
+    <ul>
+      <% Object.keys(routes).forEach(route => { %>
+      <li class="item">
+        <span class="heading" onclick="showMethodList('<%= route %>')"><%= route %></span>
+      </li>
+      <ul class="method-list slider" id="<%= route %>">
+        <% Object.keys(routes[route]).forEach( method => { %>
+        <li>
+          <%- include('./components/method.ejs', {method,route}) %>
+        </li>
+        <% }) %>
+      </ul>
+      <% }) %>
+    </ul>
+  </section>
 </section>
 

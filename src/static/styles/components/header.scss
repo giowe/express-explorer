@@ -4,9 +4,25 @@
   position: fixed;
   background-color: $barColor;
   z-index: 1;
-}
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  padding-left: 50px;
 
-.pure-menu-heading, .pure-menu-list a {
-  color: white !important;
+  .pure-menu-heading, .pure-menu-list p {
+    color: white !important;
+  }
+
+  p:hover {
+    background-color: transparent;
+  }
+
+  ul {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+    text-transform: uppercase;
+  }
 }
 

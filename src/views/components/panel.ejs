@@ -4,37 +4,32 @@ baseHeadersID = route + '-' + method + '-Headers';
 params = getParams(route);
 %>
 
-<form class="panel slide-up" id="<%= (route + "/" + method) %>">
-    <h3>Request</h3>
+<form class="panel slider" id="<%= (route + "/" + method) %>">
+  <h3>Request</h3>
 
-    <section>
-        <p>Authorization</p>
-        <input type="text" placeholder="type"></input>
-    </section>
+  <% if(params.length > 0){ %>
+  <section>
+    <p>Params</p>
+    <% params.forEach(param => { %>
+    <input type="text" placeholder="<%= param %>" target="Params"></input>
+    <% }) %>
+  </section>
 
-    <% if(params.length > 0){ %>
-    <section>
-        <p>Params</p>
-        <% params.forEach(param => { %>
-        <input type="text" placeholder="<%= param %>" target="Params"></input>
-        <% }) %>
-    </section>
+  <% } %>
+  <%- include('./params.ejs',{title:"Headers",baseID:baseHeadersID })
+  %>
 
-    <% } %>
-    <%- include('./params.ejs',{title:"Headers",baseID:baseHeadersID })
-    %>
+  <% if(method == "post" || method == "put"){ %>
+  <section>
+    <p>Body</p>
+    <textarea id="<%= (route + "/" + method + "-body") %>"></textarea>
+  </section>
+  <% } %>
 
-    <% if(method == "post" || method == "put"){ %>
-    <section>
-        <p>Body</p>
-        <textarea id="<%= (route + "/" + method + "-body") %>"></textarea>
-    </section>
-    <% } %>
-
-    <button type="button" class="pure-button-primary sendBtn"
-            onclick="createRequest('<%= route %>','<%= method %>')"
-    >Test!
-    </button>
-    <hr class="closer">
-    <%- include('./response.ejs',{route,method}) %>
+  <button type="button" class="pure-button-primary sendBtn"
+          onclick="createRequest('<%= route %>','<%= method %>')"
+  >Test!
+  </button>
+  <hr class="closer">
+  <%- include('./response.ejs',{route,method}) %>
 </form>

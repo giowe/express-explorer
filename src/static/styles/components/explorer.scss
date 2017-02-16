@@ -20,7 +20,7 @@ $itemColor: #686868;
       border-bottom: $itemBorder;
       color: $itemColor;
       margin: 1% 0;
-      font-family: 'Droid Sans';
+      cursor: pointer;
     }
 
   }
@@ -28,6 +28,7 @@ $itemColor: #686868;
 
 .heading {
   font-size: 25px;
+  font-family: $fontFamily;
 }
 
 .heading:hover {
@@ -35,7 +36,7 @@ $itemColor: #686868;
 }
 
 .method-list li {
-  margin: 2% 0;
+  margin: 1% 0;
 }
 
 @media(max-width: 767px) {

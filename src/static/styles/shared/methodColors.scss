@@ -1,0 +1,140 @@
+@mixin block($bg-color) {
+  padding: 10px;
+  border-radius: 3px;
+  height: 25px;
+  color: white;
+  background-color: $bg-color;
+  text-transform: uppercase;
+}
+
+.acl {
+  @include block(#D2481F)
+}
+
+.bind {
+  @include block(#D2481F)
+}
+
+.checkout {
+  @include block(#D2481F)
+}
+
+.connect {
+  @include block(#D2481F)
+}
+
+.copy {
+  @include block(#D2481F)
+}
+
+.delete {
+  @include block(#D2481F)
+}
+
+.get {
+  @include block(#13859F)
+}
+
+.head {
+  @include block(#FF7F41)
+}
+
+.link {
+  @include block(#13859F)
+}
+
+.lock {
+  @include block(#13859F)
+}
+
+.m-search {
+  @include block(#13859F)
+}
+
+.merge {
+  @include block(#FF7F41)
+}
+
+.mkactivity {
+  @include block(#FF7F41)
+}
+
+.mkcalendar {
+  @include block(#FF7F41)
+}
+
+.mkcol {
+   @include block(#FF7F41)
+ }
+
+.move {
+  @include block(#FF7F41)
+}
+
+.notify {
+  @include block(#FF7F41)
+}
+
+.options {
+  @include block(#FF7F41)
+}
+
+.patch {
+  @include block(#00C1D5)
+}
+
+.post {
+  @include block(#8F67CA)
+}
+
+.propfind {
+  @include block(#FF7F41)
+}
+
+.proppatch {
+  @include block(#FF7F41)
+}
+
+.purge {
+  @include block(#FF7F41)
+}
+
+.put {
+  @include block(#C38536)
+}
+
+.rebind {
+  @include block(#FF7F41)
+}
+
+.report {
+  @include block(#FF7F41)
+}
+
+.search {
+  @include block(#FF7F41)
+}
+
+.subscribe {
+  @include block(#FF7F41)
+}
+
+.trace {
+  @include block(#FF7F41)
+}
+
+.unbind {
+  @include block(#FF7F41)
+}
+
+.unlink {
+  @include block(#FF7F41)
+}
+
+.unlock {
+  @include block(#FF7F41)
+}
+
+.unsubscribe {
+  @include block(#FF7F41)
+}

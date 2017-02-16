@@ -7,36 +7,42 @@ const http = require('http');
 
 app.use('/explorer', explorer());
 
-//todo @messo questo che roba è ? si può cavare no ?
-/*const getParams = (path) => {
-    return [ path, (req, res) => { res.send('ok! ' + path)} ];
-};*/
-
 app.use('/rout', router);
+
+app.get('/test', (req, res) => res.send('test'));
+app.delete('/test', (req, res) => res.send('test'));
+app.put('/test', (req, res) => res.send('test'));
+app.post('/test', (req, res) => res.send('test'));
+
 [
   '/home',
   '/contacts',
   '/contacts/:id'
 ].forEach(route => {
- app.get(route, (req, res) => {
-   res.send(route);
- });
 
- app.post(route, (req, res) => {
-   res.send(route + 'post');
- });
+  app.get(route, (req, res) => {
+    res.send(route);
+  });
 
- router.get(route + 'rrrr', (req, res) => {
-   res.send(route + 'rrrr');
- });
+  app.post(route, (req, res) => {
+    res.send(route + 'post');
+  });
 
- router.post(route + 'rrrr', (req, res) => {
+  router.get(route + 'rrrr', (req, res) => {
+    res.send(route + 'rrrr');
+  });
+
+  router.post(route + 'rrrr', (req, res) => {
     res.send(route + 'rrrr');
   });
 });
 
 router.all('omni', (req, res) => {
   res.send('omni');
+});
+
+app.all('*', (req, res) => {
+  res.send('all');
 });
 
 app.listen(8080, () => {

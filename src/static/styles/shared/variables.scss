@@ -1,4 +1,6 @@
+@import 'methodColors';
+
 $barColor: #1F8DD6;
-$pageHorizontalPadding: 25%;
+$pageHorizontalPadding: 15%;
 $pageHorizontalPaddingMobile: 3%;
-$expressMethods: "acl" "bind" "checkout" "connect" "copy" "delete" "get" "head" "link" "lock" "m-search" "merge" "mkactivity" "mkcalendar" "mkcol" "move" "notify" "options" "patch" "post" "propfind" "proppatch" "purge" "put" "rebind" "report" "search" "subscribe" "trace" "unbind" "unlink" "unlock" "unsubscribe";
+$fontFamily: sans-serif;
