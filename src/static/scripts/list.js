@@ -2,7 +2,6 @@ const showMethodList = (id) => {
   const elem = document.getElementById(id);
   const father = elem.previousElementSibling;
   let description;
-  let text;
 
   if (father.getElementsByClassName) {
     description = father.getElementsByClassName('right')[0];
@@ -10,21 +9,22 @@ const showMethodList = (id) => {
 
   if (elem.style.opacity == 0) {
     slideDown(elem);
-    text = 'close';
+    if (description) description.innerHTML = `close testing panel`;
   }
   else {
     slideUp(elem);
-    text = 'open';
-  }
+    window.setTimeout(() => {
+      if (description && father.classList.contains('method-container')) {
+        description.innerHTML = `open testing panel`;
+      }
+    }, 650);
 
-  if (description && father.classList.contains('method-container')) {
-    description.innerHTML = `${text} testing panel`;
   }
 };
 
 const slideDown = (elem) => {
   const count = elem.getElementsByClassName('method-container').length;
-  const height = ((44 * count) + 380).toString() + 'px';
+  const height = ((44 * count) + 500).toString() + 'px';
   elem.style.maxHeight = height;
   elem.style.opacity = '1';
 };
@@ -38,7 +38,7 @@ const slideUp = (elem) => {
 
 const once = (seconds, callback) => {
   let counter = 0;
-  const time = window.setInterval(function () {
+  const time = window.setInterval(() => {
     counter++;
     if (counter >= seconds) {
       callback();
@@ -46,5 +46,10 @@ const once = (seconds, callback) => {
     }
   }, 700);
 };
+
+
+
+
+
 
 

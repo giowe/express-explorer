@@ -4,15 +4,24 @@ const express = require('express');
 const app = new express();
 const router = express.Router();
 const http = require('http');
+const pkg = {
+  "name": "mario",
+  "suname": "rossi",
+  "age": 17,
+  "sons": [
+    "paolo rossi",
+    "paola rossi"
+  ]
+};
 
 app.use('/explorer', explorer());
 
-app.use('/rout', router);
+app.get('/test', (req, res) => res.json(pkg));
+app.delete('/test', (req, res) => res.send('ciaone'));
+app.put('/test', (req, res) => res.json(pkg));
+app.post('/test', (req, res) => res.json(pkg));
 
-app.get('/test', (req, res) => res.send('test'));
-app.delete('/test', (req, res) => res.send('test'));
-app.put('/test', (req, res) => res.send('test'));
-app.post('/test', (req, res) => res.send('test'));
+app.use('/rout', router);
 
 [
   '/home',
@@ -44,6 +53,7 @@ router.all('omni', (req, res) => {
 app.all('*', (req, res) => {
   res.send('all');
 });
+
 
 app.listen(8080, () => {
   console.log('Listening on port 8080');

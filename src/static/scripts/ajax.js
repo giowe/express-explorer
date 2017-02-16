@@ -91,18 +91,30 @@ const getUrl = (route, inputs) => {
 };
 
 const populateResponsePanel = (res, panelID, time, url) => {
-  const panel = document.getElementById(panelID);
-  const info = panel.getElementsByTagName('li');
-  const data = panel.getElementsByTagName('textarea');
+  const infoEl = document.getElementById(`${panelID}-info`);
+  const headerEl = document.getElementById(`${panelID}-header`);
+  const bodyEl = document.getElementById(`${panelID}-body`);
+  const infoObj = {
+    url,
+    status: res.status,
+    time: `${time} ms`
+  };
+  const fakeHeader = {
+    "Connection": "keep-alive",
+    "Content-Length": 79,
+    "Content-Type": "application/json; charset=utf-8",
+    "Date": "Thu 16 Feb 2017 23:16:16 GMT",
+    "ETag": 'W/"4f-9I6gTqjXz61B2ThamFDGTA"',
+    "X-Powered-By": "Express"
+  };
 
-  info[0].innerHTML = 'URL:' + url;
-  info[1].innerHTML = 'Status:' + res.status;
-  info[2].innerHTML = 'Time:' + time + ' ms';
-
-
-  data[0].value = prettifyJson(res.headers);
-  res.text().then(text => data[1].value = text);
+  formatJSON(infoObj, infoEl);
+  formatJSON(fakeHeader, headerEl);
+  res.text().then(text => formatJSON(JSON.parse(text), bodyEl));
 };
 
-const prettifyJson = (ugly) => JSON.stringify(ugly, undefined, 2);
+const formatJSON = (json, panel) => {
+  const frm = new JSONFormatter(json);
+  panel.appendChild(frm.render());
+};
 

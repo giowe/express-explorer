@@ -1,21 +1,17 @@
 <section class="responseSect slider" id='<%= (route + "/" + method + "-response") %>'>
   <h3>Response</h3>
   <div class="pure-g">
-    <section class="pure-u-1-3 infoSect">
+    <section class="pure-u-1-3">
       <h4>Info</h4>
-      <ul>
-        <li>URL:'test/url'</li>
-        <li>Status Code:200</li>
-        <li>Time:300 ms</li>
-      </ul>
+      <div class="jsonViewer" id='<%= (route + "/" + method + "-response-info") %>'></div>
     </section>
     <section class="pure-u-1-3">
       <h4>Header</h4>
-      <textarea></textarea>
+      <div class="jsonViewer" id='<%= (route + "/" + method + "-response-header") %>'></div>
     </section>
     <section class="pure-u-1-3">
       <h4>Body</h4>
-      <textarea></textarea>
+      <div class="jsonViewer" id='<%= (route + "/" + method + "-response-body") %>'></div>
     </section>
   </div>
 </section>

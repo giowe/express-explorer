@@ -7,6 +7,10 @@
   text-transform: uppercase;
 }
 
+._all{
+  @include block(black)
+}
+
 .acl {
   @include block(#D2481F)
 }

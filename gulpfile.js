@@ -1,13 +1,13 @@
 'use strict';
-const gulp     = require('gulp');
-const concat   = require('gulp-concat');
-const babel    = require('gulp-babel');
-const sass     = require('gulp-sass');
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const babel = require('gulp-babel');
+const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
-const uglify   = require('gulp-uglify');
-const nodemon  = require('gulp-nodemon');
-const replace  = require('gulp-replace');
-const del      = require('del');
+const uglify = require('gulp-uglify');
+const nodemon = require('gulp-nodemon');
+const replace = require('gulp-replace');
+const del = require('del');
 
 gulp.task('clean', () => {
   return del.sync('./build');
@@ -28,6 +28,9 @@ gulp.task('js', () => {
     }))
     .pipe(concat('scripts.min.js'))
     .pipe(uglify())
+    .pipe(gulp.dest('./build/static'));
+
+  gulp.src('./src/static/scripts/vendor/json-formatter.js')
     .pipe(gulp.dest('./build/static'));
 });
 
@@ -50,10 +53,10 @@ gulp.task('package', () => {
 
 gulp.task('watch', () => {
   gulp.watch('./src/static/styles/**/*.scss', ['sass']);
-  gulp.watch('./src/static/scripts/**/*.js',  ['js']);
-  gulp.watch('./src/views/**/*',              ['views']);
-  gulp.watch('./src/express-explorer.js',     ['root-files']);
-  gulp.watch('./src/package.json',            ['package']);
+  gulp.watch('./src/static/scripts/**/*.js', ['js']);
+  gulp.watch('./src/views/**/*', ['views']);
+  gulp.watch('./src/express-explorer.js', ['root-files']);
+  gulp.watch('./src/package.json', ['package']);
 });
 
 gulp.task('build', ['clean', 'sass', 'js', 'views', 'root-files', 'package']);

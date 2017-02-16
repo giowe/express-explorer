@@ -13,7 +13,7 @@ const addParam = (context, elementID, containerID) => {
   const elem = container.childNodes[childCount - selector];
   const currentIndex = parseInt(elem.getAttribute('index'));
 
-  if (getLastParam(container) == context.parentNode && ((getParamCount(container) < 10))) {
+  if (getLastParam(container) == context.parentNode && ((getParamCount(container) < 5))) {
 
     const clone = elem.cloneNode(true);
     const newIndex = (currentIndex + 1).toString();
