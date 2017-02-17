@@ -2,14 +2,16 @@
 const explorer = require('./build/express-explorer');
 const express = require('express');
 const app = new express();
-const router = express.Router();
+const fs = require('fs');
+const xml = require('xml');
 const http = require('http');
-const pkg = {
+
+const testJSON = {
   "name": "mario",
   "suname": "rossi",
   "age": 17,
   "sons": [
-    "paolo rossi",
+    "marco rossi",
     "paola rossi"
   ]
 };
@@ -17,13 +19,27 @@ const pkg = {
 app.use('/explorer', explorer());
 app.use('/', express.static(__dirname + '/build'));
 
-app.get('/test', (req, res) => res.json(pkg));
-app.delete('/test', (req, res) => res.send('ciaone'));
-app.put('/test', (req, res) => res.json(pkg));
-app.post('/test', (req, res) => res.json(pkg));
+app.get('/text', (req, res) => res.send('GET'));
+app.delete('/text', (req, res) => res.send('DELETE'));
+app.put('/text', (req, res) => res.send('PUT'));
+app.post('/text', (req, res) => res.send('POST'));
 
-app.get('/route1', (req, res) => {
+app.get('/html', (req, res) => {
   res.send('<h1>Hello World!</h1>');
+});
+
+app.get('/json', (req, res) => {
+  res.json(testJSON);
+});
+
+app.get('/xml', (req, res) => {
+  res.set('Content-Type', 'text/xml; charset=utf-8');
+  fs.readFile(__dirname + '/test.xml', (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.send(data);
+  });
 });
 
 app.all('*', (req, res) => {

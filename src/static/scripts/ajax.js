@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import {showMethodList} from './list';
-import {renderJSON, renderText} from './render';
+import {renderJSON, renderXML, renderText} from './render';
 import {getRequestHeaders, getResponseHeader} from './headers';
 
 export const createRequest = (route, method) => {
@@ -83,17 +83,21 @@ export const populateResponsePanel = (res, panelID, time, url) => {
 
   renderJSON(infoObj, infoEl);
   renderJSON(getResponseHeader(res.headers), headerEl);
+  res.text().then(text => createBodyView(text, res.headers.get('Content-Type'), bodyEl));
 
-  res.text().then(text => {
+};
 
-    if (res.headers.get('Content-Type') == 'application/json; charset=utf-8') {
-      renderJSON(JSON.parse(text), bodyEl);
-    } else {
-      renderText(text.toString(), bodyEl, '95');
-    }
-
-  });
-
+export const createBodyView = (text, contentType, container) => {
+  switch (contentType) {
+    case 'application/json; charset=utf-8':
+      renderJSON(JSON.parse(text), container);
+      break;
+    case 'text/xml; charset=utf-8':
+      renderXML(text, container);
+      break;
+    default:
+      renderText(text, container, '95')
+  }
 };
 
 
