@@ -18,11 +18,11 @@ const createRequest = (route, method) => {
   }
 
   if (!resPanel.classList.contains('slide-down-response')) {
-    console.log(request);
+    //console.log(request);
     window.fetch(url, request)
       .then(res => res)
       .then(res => {
-        console.log(res);
+        //console.log(res);
         const resTime = (new Date()).getTime() - startTime;
         showMethodList(resPanelID, 'response');
         populateResponsePanel(res, resPanelID, resTime, request.url);
@@ -99,18 +99,21 @@ const populateResponsePanel = (res, panelID, time, url) => {
     status: res.status,
     time: `${time} ms`
   };
-  const fakeHeader = {
-    "Connection": "keep-alive",
-    "Content-Length": 79,
-    "Content-Type": "application/json; charset=utf-8",
-    "Date": "Thu 16 Feb 2017 23:16:16 GMT",
-    "ETag": 'W/"4f-9I6gTqjXz61B2ThamFDGTA"',
-    "X-Powered-By": "Express"
-  };
 
   formatJSON(infoObj, infoEl);
-  formatJSON(fakeHeader, headerEl);
-  res.text().then(text => formatJSON(JSON.parse(text), bodyEl));
+  formatJSON(getResponseHeader(res.headers), headerEl);
+  res.text().then(text => {
+    if (res.headers.get('Content-Type') == 'application/json; charset=utf-8') {
+      formatJSON(JSON.parse(text), bodyEl);
+    } else {
+      const staticViewer = document.createElement('p');
+      staticViewer.textContent = `"${text.toString()}"`;
+      staticViewer.style.minHeight = '95px';
+      bodyEl.appendChild(staticViewer);
+    }
+
+  });
+
 };
 
 const formatJSON = (json, panel) => {
@@ -118,3 +121,12 @@ const formatJSON = (json, panel) => {
   panel.appendChild(frm.render());
 };
 
+const getResponseHeader = (headers) => {
+  const keys = [...headers.keys()];
+  const values = [...headers.values()];
+  const resHeader = {};
+
+  keys.map((key, i) => resHeader[key] = values[i]);
+
+  return resHeader;
+};
