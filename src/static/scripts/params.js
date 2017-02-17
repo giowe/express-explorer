@@ -1,12 +1,12 @@
-const getLastParam = (container) => {
+export const getLastParam = (container) => {
   const params = container.getElementsByClassName('param');
   const length = params.length;
   return params[length - 1];
 };
 
-const getParamCount = (container) => container.getElementsByClassName('param').length;
+export const getParamCount = (container) => container.getElementsByClassName('param').length;
 
-const addParam = (context, elementID, containerID) => {
+export const addParam = (context, elementID, containerID) => {
   const container = document.getElementById(containerID);
   const childCount = container.childNodes.length;
   const selector = (childCount == 5) ? 2 : 1;
@@ -28,12 +28,12 @@ const addParam = (context, elementID, containerID) => {
 
 };
 
-const deleteParam = (context) => {
+export const deleteParam = (context) => {
   const parent = context.parentNode;
   if (parseInt(parent.getAttribute('index')) > 0) parent.remove();
 };
 
-const setNewParamIds = (elem, newIndex) => {
+export const setNewParamIds = (elem, newIndex) => {
   let oldID = elem.getAttribute('id');
 
   elem.value = '';

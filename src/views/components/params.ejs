@@ -4,14 +4,14 @@
     <input type="text" placeholder="key"
            target="<%= title %>"
            id="<%= baseID + '-key-0' %>"
-           onfocus="addParam(this,'<%= baseID + '-params-0' %>','<%= baseID + '-container-params' %>')"
+           onfocus="Lib.default.addParam(this,'<%= baseID + '-params-0' %>','<%= baseID + '-container-params' %>')"
     >
     <input type="text" placeholder="value"
            target="<%= title %>"
            id="<%= baseID + '-value-0' %>"
     >
     <button type="button" class="pure-button-secondary deleteBtn"
-            onclick="deleteParam(this)">X
+            onclick="Lib.default.deleteParam(this)">X
     </button>
   </section>
 </section>

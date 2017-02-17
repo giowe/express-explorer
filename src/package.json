@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/giowe/express-explorer#readme",
   "dependencies": {
-    "ejs": "^2.5.5"
+    "ejs": "^2.5.5",
+    "json-formatter-js": "^1.3.0",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {}
 }

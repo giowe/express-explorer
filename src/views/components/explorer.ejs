@@ -3,7 +3,7 @@
     <h2 class="panel-title"><!--<%= project.name %>--> Express-Explorer-Dev-Server</h2>
     <ul>
       <% Object.keys(routes).forEach(route => { %>
-      <li class="item" onclick="showMethodList('<%= route %>')">
+      <li class="item" onclick="Lib.default.showMethodList('<%= route %>')">
         <span class="heading"><%= route %></span>
       </li>
       <ul class="method-list slider" id="<%= route %>">

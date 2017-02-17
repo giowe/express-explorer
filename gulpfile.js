@@ -1,13 +1,14 @@
 'use strict';
-const gulp = require('gulp');
-const concat = require('gulp-concat');
-const babel = require('gulp-babel');
-const sass = require('gulp-sass');
+const gulp     = require('gulp');
+const concat   = require('gulp-concat');
+const sass     = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const nodemon = require('gulp-nodemon');
-const replace = require('gulp-replace');
-const del = require('del');
+const uglify   = require('gulp-uglify');
+const nodemon  = require('gulp-nodemon');
+const replace  = require('gulp-replace');
+const del      = require('del');
+const webpack  = require('webpack-stream');
+const config   = require('./webpack.config');
 
 gulp.task('clean', () => {
   return del.sync('./build');
@@ -22,15 +23,8 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
-  gulp.src('./src/static/scripts/**/*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(concat('scripts.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./build/static'));
-
-  gulp.src('./src/static/scripts/vendor/json-formatter.js')
+  gulp.src('./src/static/scripts/index.js')
+    .pipe(webpack(config))
     .pipe(gulp.dest('./build/static'));
 });
 

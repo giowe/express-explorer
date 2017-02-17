@@ -1,4 +1,8 @@
-const createRequest = (route, method) => {
+import JSONFormatter from 'json-formatter-js';
+import 'whatwg-fetch';
+import {showMethodList} from './list';
+
+export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
   const methodContainerID = route + '/' + method;
   const resPanelID = methodContainerID + '-response';
@@ -38,7 +42,7 @@ const createRequest = (route, method) => {
   }
 };
 
-const getHeaders = (inputs) => {
+export const getHeaders = (inputs) => {
   const headers = {};
   const headerKeys = [];
   const headerValues = [];
@@ -63,7 +67,7 @@ const getHeaders = (inputs) => {
   return headers;
 };
 
-const getUrl = (route, inputs) => {
+export const getUrl = (route, inputs) => {
 
   const segments = route.split('/');
   let url = '/' + segments[1];
@@ -90,7 +94,7 @@ const getUrl = (route, inputs) => {
   return url;
 };
 
-const populateResponsePanel = (res, panelID, time, url) => {
+export const populateResponsePanel = (res, panelID, time, url) => {
   const infoEl = document.getElementById(`${panelID}-info`);
   const headerEl = document.getElementById(`${panelID}-header`);
   const bodyEl = document.getElementById(`${panelID}-body`);
@@ -116,12 +120,12 @@ const populateResponsePanel = (res, panelID, time, url) => {
 
 };
 
-const formatJSON = (json, panel) => {
+export const formatJSON = (json, panel) => {
   const frm = new JSONFormatter(json);
   panel.appendChild(frm.render());
 };
 
-const getResponseHeader = (headers) => {
+export const getResponseHeader = (headers) => {
   const keys = [...headers.keys()];
   const values = [...headers.values()];
   const resHeader = {};
