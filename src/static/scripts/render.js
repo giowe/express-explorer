@@ -2,8 +2,9 @@ import JSONFormatter from 'json-formatter-js';
 import XMLViewer from 'xml-viewer';
 
 export const renderText = (text, panel, height) => {
-  const staticViewer = document.createElement('p');
+  const staticViewer = document.createElement('div');
   staticViewer.textContent = `"${text}"`;
+  staticViewer.className = 'json-formatter-row';
   staticViewer.style.minHeight = `${height}px`;
   panel.appendChild(staticViewer);
 };

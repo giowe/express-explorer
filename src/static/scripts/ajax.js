@@ -42,6 +42,7 @@ export const createRequest = (route, method) => {
   }
   else {
     showMethodList(resPanelID, 'response');
+    clearPanel(resPanel);
   }
 };
 
@@ -102,6 +103,10 @@ export const createBodyView = (text, contentType, container) => {
   }
 };
 
+export const clearPanel = (panel) => {
+  const divs = panel.getElementsByClassName('json-formatter-row');
+  divs.map(div => div.remove());
+};
 
 
 

@@ -42,6 +42,16 @@ app.get('/xml', (req, res) => {
   });
 });
 
+app.get('/error', (req, res) => {
+  res.status(500).json({
+      "status": "500",
+      "source": "/error",
+      "title": "The backend responded with an error",
+      "detail": "There was an error during the elaboration of your request"
+    }
+  );
+});
+
 app.all('*', (req, res) => {
   res.send('all');
 });
