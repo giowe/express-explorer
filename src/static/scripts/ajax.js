@@ -33,9 +33,11 @@ export const createRequest = (route, method) => {
         populateResponsePanel(res, resPanelID, resTime, request.url);
       })
       .catch(res => {
-        const resTime = (new Date()).getTime() - startTime;
-        showMethodList(resPanelID, 'response');
-        populateResponsePanel(res, resPanelID, resTime, request.url);
+        const container = document.getElementById(methodContainerID);
+        const warning = document.createElement('p');
+        warning.style.color = 'red';
+        warning.innerHTML = 'CONNECTION REFUSED!';
+        container.insertBefore(warning, container.childNodes[container.childNodes.length - 4]);
       });
   }
   else {
