@@ -1,6 +1,7 @@
-import JSONFormatter from 'json-formatter-js';
 import 'whatwg-fetch';
 import {showMethodList} from './list';
+import {renderJSON, renderText} from './render';
+import {getRequestHeaders, getResponseHeader} from './headers';
 
 export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
@@ -8,7 +9,7 @@ export const createRequest = (route, method) => {
   const resPanelID = methodContainerID + '-response';
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
-  const headers = getHeaders(inputs);
+  const headers = getRequestHeaders(inputs);
   const url = getUrl(route, inputs);
   const request = {
     method: method,
@@ -42,31 +43,6 @@ export const createRequest = (route, method) => {
   }
 };
 
-export const getHeaders = (inputs) => {
-  const headers = {};
-  const headerKeys = [];
-  const headerValues = [];
-
-  for (let i = 0; i < inputs.length - 2; i++) {
-    const input = inputs[i];
-
-    if (input.getAttribute('target') == 'Headers') {
-      if (input.getAttribute('placeholder') == 'key') {
-        headerKeys.push(input.value);
-      }
-      else {
-        headerValues.push(input.value);
-      }
-    }
-  }
-
-  for (let i = 0; i < headerKeys.length; i++) {
-    headers[headerKeys[i]] = headerValues[i];
-  }
-
-  return headers;
-};
-
 export const getUrl = (route, inputs) => {
 
   const segments = route.split('/');
@@ -95,6 +71,7 @@ export const getUrl = (route, inputs) => {
 };
 
 export const populateResponsePanel = (res, panelID, time, url) => {
+
   const infoEl = document.getElementById(`${panelID}-info`);
   const headerEl = document.getElementById(`${panelID}-header`);
   const bodyEl = document.getElementById(`${panelID}-body`);
@@ -104,33 +81,21 @@ export const populateResponsePanel = (res, panelID, time, url) => {
     time: `${time} ms`
   };
 
-  formatJSON(infoObj, infoEl);
-  formatJSON(getResponseHeader(res.headers), headerEl);
+  renderJSON(infoObj, infoEl);
+  renderJSON(getResponseHeader(res.headers), headerEl);
+
   res.text().then(text => {
+
     if (res.headers.get('Content-Type') == 'application/json; charset=utf-8') {
-      formatJSON(JSON.parse(text), bodyEl);
+      renderJSON(JSON.parse(text), bodyEl);
     } else {
-      const staticViewer = document.createElement('p');
-      staticViewer.textContent = `"${text.toString()}"`;
-      staticViewer.style.minHeight = '95px';
-      bodyEl.appendChild(staticViewer);
+      renderText(text.toString(), bodyEl, '95');
     }
 
   });
 
 };
 
-export const formatJSON = (json, panel) => {
-  const frm = new JSONFormatter(json);
-  panel.appendChild(frm.render());
-};
 
-export const getResponseHeader = (headers) => {
-  const keys = [...headers.keys()];
-  const values = [...headers.values()];
-  const resHeader = {};
 
-  keys.map((key, i) => resHeader[key] = values[i]);
 
-  return resHeader;
-};
