@@ -1,6 +1,8 @@
 'use strict';
 const gulp     = require('gulp');
 const concat   = require('gulp-concat');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
 const sass     = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
 const uglify   = require('gulp-uglify');
@@ -12,6 +14,19 @@ const config   = require('./webpack.config');
 
 gulp.task('clean', () => {
   return del.sync('./build');
+});
+
+gulp.task('images', () => {
+  gulp.src('src/static/images/*.*')
+    .pipe(imagemin({
+      optimizationLevel: 3, //png
+      progressive: true,    //jpg
+      intralaced: false,    //gif
+      mutlipass: false,     //svg
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest('build/static/images'));
 });
 
 gulp.task('sass', () => {
@@ -52,7 +67,7 @@ gulp.task('watch', () => {
   gulp.watch('./src/package.json', ['package']);
 });
 
-gulp.task('build', ['clean', 'sass', 'js', 'views', 'root-files', 'package']);
+gulp.task('build', ['clean', 'images', 'sass', 'js', 'views', 'root-files', 'package']);
 
 gulp.task('serve', ['build'], () => {
   nodemon({

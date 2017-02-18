@@ -22,12 +22,10 @@ export const createRequest = (route, method) => {
     request.body = JSON.parse(body);
   }
 
-  if (!resPanel.classList.contains('slide-down-response')) {
-    //console.log(request);
+  if (resPanel.style.maxHeight !== '500px') {
     window.fetch(url, request)
       .then(res => res)
       .then(res => {
-        //console.log(res);
         const resTime = (new Date()).getTime() - startTime;
         showMethodList(resPanelID, 'response');
         populateResponsePanel(res, resPanelID, resTime, request.url);
@@ -42,7 +40,7 @@ export const createRequest = (route, method) => {
   }
   else {
     showMethodList(resPanelID, 'response');
-    clearPanel(resPanel);
+    window.setTimeout(() => clearPanel(resPanel), 700);
   }
 };
 
@@ -104,8 +102,10 @@ export const createBodyView = (text, contentType, container) => {
 };
 
 export const clearPanel = (panel) => {
-  const divs = panel.getElementsByClassName('json-formatter-row');
-  divs.map(div => div.remove());
+  const divs = panel.getElementsByClassName('clearable');
+  for (let i = 0; i < divs.length; i++) {
+    divs[i].style.display = 'none';
+  }
 };
 
 
