@@ -1,0 +1,29 @@
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin animation($animation,$delay) {
+  -webkit-animation: $animation;
+  -webkit-animation-delay: $delay;
+  animation: $animation;
+  animation-delay: $delay;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName}{
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}

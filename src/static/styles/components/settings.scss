@@ -1,0 +1,37 @@
+@import "../shared/mixins";
+@import "../shared/variables";
+
+.settings {
+  @include transform(translateY(-50%));
+  position: fixed;
+  top: 50%;
+  right: 0;
+}
+
+.settings-panel {
+  @extend .settings;
+  right: -$settingSize;
+  width: $settingSize;
+  height: $settingSize;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.settings-trigger {
+  @extend .settings;
+  max-height: 70px;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.close-panel{
+  font-size: 20px;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  margin: 0;
+  font-family: Verdana,sans-serif;
+  cursor: pointer;
+}

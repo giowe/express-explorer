@@ -44,7 +44,6 @@ gulp.task('package', () => {
     .pipe(gulp.dest('./build'));
 });
 
-
 gulp.task('watch', () => {
   gulp.watch('./src/static/styles/**/*.scss', ['sass']);
   gulp.watch('./src/static/scripts/**/*.js', ['js']);
