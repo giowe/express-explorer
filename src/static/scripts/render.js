@@ -3,7 +3,7 @@ import XMLViewer from 'xml-viewer';
 
 export const renderText = (text, panel, height) => {
   const staticViewer = document.createElement('div');
-  staticViewer.textContent = `"${text}"`;
+  staticViewer.textContent = text;
   staticViewer.className = 'clearable';
   staticViewer.style.minHeight = `${height}px`;
   panel.appendChild(staticViewer);

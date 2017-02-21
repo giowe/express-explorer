@@ -28,7 +28,7 @@ export const createRequest = (route, method) => {
       .then(res => {
         const resTime = (new Date()).getTime() - startTime;
         showMethodList(resPanelID, 'response');
-        populateResponsePanel(res, resPanelID, resTime, request.url);
+        populateResponsePanel(res, resPanelID, resTime, route);
       })
       .catch(res => {
         const container = document.getElementById(methodContainerID);
@@ -71,18 +71,14 @@ export const getUrl = (route, inputs) => {
   return url;
 };
 
-export const populateResponsePanel = (res, panelID, time, url) => {
-
-  const infoEl = document.getElementById(`${panelID}-info`);
+export const populateResponsePanel = (res, panelID) => {
+  const urlEl = document.getElementById(`${panelID}-url`);
+  const statusEl = document.getElementById(`${panelID}-status`);
   const headerEl = document.getElementById(`${panelID}-header`);
   const bodyEl = document.getElementById(`${panelID}-body`);
-  const infoObj = {
-    url,
-    status: res.status,
-    time: `${time} ms`
-  };
 
-  renderJSON(infoObj, infoEl);
+  urlEl.innerHTML = res.url;
+  statusEl.innerHTML = res.status;
   renderJSON(getResponseHeader(res.headers), headerEl);
   res.text().then(text => createBodyView(text, res.headers.get('Content-Type'), bodyEl));
 

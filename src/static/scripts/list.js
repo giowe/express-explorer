@@ -18,13 +18,12 @@ export const showMethodList = (id) => {
         description.innerHTML = `open testing panel`;
       }
     }, 650);
-
   }
 };
 
 export const slideDown = (elem) => {
   const count = elem.getElementsByClassName('method-container').length;
-  const height = ((44 * count) + 500).toString() + 'px';
+  const height = ((44 * count) + 1000).toString() + 'px';
   elem.style.maxHeight = height;
   elem.style.opacity = '1';
 };
