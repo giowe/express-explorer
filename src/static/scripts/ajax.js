@@ -18,7 +18,10 @@ export const createRequest = (route, method) => {
   };
 
   if (method == 'put' || method == 'post') {
-    const body = document.getElementById(methodContainerID + '-body').value;
+    let body = document.getElementById(methodContainerID + '-body').value;
+    if (!body) {
+      body = '{}';
+    }
     request.body = JSON.parse(body);
   }
 

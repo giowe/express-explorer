@@ -22,7 +22,7 @@ params = getParams(route);
   <% if(method == "post" || method == "put"){ %>
   <section>
     <p>Body</p>
-    <textarea id="<%= (route + "/" + method + "-body") %>"></textarea>
+    <textarea class="bodyInput" id="<%= (route + "/" + method + "-body") %>"></textarea>
   </section>
   <% } %>
 

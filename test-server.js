@@ -20,9 +20,11 @@ app.use('/explorer', explorer());
 app.use('/', express.static(__dirname + '/build'));
 
 app.get('/text', (req, res) => res.send('GET'));
+app.head('/text', (req, res) => res.send('HEADE'));
 app.delete('/text', (req, res) => res.send('DELETE'));
-app.put('/text', (req, res) => res.send('PUT'));
+app.patch('/text', (req, res) => res.send('PUT'));
 app.post('/text', (req, res) => res.send('POST'));
+app.put('/text', (req, res) => res.send('PUT'));
 
 app.get('/html', (req, res) => {
   res.send('<h1>Hello World!</h1>');
