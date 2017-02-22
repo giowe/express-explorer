@@ -1,7 +1,24 @@
-@import 'methodColors';
-
 $barColor: #1F8DD6;
 $pageHorizontalPadding: 15%;
 $pageHorizontalPaddingMobile: 3%;
 $fontFamily: 'helvetica neue', helvetica, arial, sans-serif !important;
 $settingSize: 400px;
+$responseHeadersColor: #6495ed;
+
+$allColor: black;
+$getColor: #0085A1;
+$deleteColor: #D4470F;
+$headColor: #FF7F41;
+$patchColor: #00C1D5;
+$postColor: #9063CD;
+$putColor: #C5862B;
+$defaultColor: #35363B;
+
+$allBgColor: black;
+$getBgColor: #E6F3F6;
+$deleteBgColor: #F5E8E8;
+$headBgColor: #FFF2EC;
+$patchBgColor: #E6F9FB;
+$postBgColor: #F4EFFA;
+$putBgColor: #EDE7EE;
+$defaultBgColor: #35363B;

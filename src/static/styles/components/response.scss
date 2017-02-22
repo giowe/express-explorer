@@ -1,7 +1,9 @@
+@import "../shared/variables";
+
 .responseSect {
   h4 {
     text-align: left;
-    color: cornflowerblue;
+    color: $responseHeadersColor;
     margin: 1.5%;
   }
 }

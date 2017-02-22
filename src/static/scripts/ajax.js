@@ -22,7 +22,7 @@ export const createRequest = (route, method) => {
     request.body = JSON.parse(body);
   }
 
-  if (resPanel.style.maxHeight !== '500px') {
+  if (resPanel.style.maxHeight !== '1500px') {
     window.fetch(url, request)
       .then(res => res)
       .then(res => {
@@ -87,7 +87,8 @@ export const populateResponsePanel = (res, panelID) => {
 export const createBodyView = (text, contentType, container) => {
   switch (contentType) {
     case 'application/json; charset=utf-8':
-      renderJSON(JSON.parse(text), container);
+      renderText(text, container, '200s');
+      prettyPrint(container.firstChild);
       break;
     case 'text/xml; charset=utf-8':
       renderXML(text, container);
@@ -104,5 +105,11 @@ export const clearPanel = (panel) => {
   }
 };
 
-
+export const prettyPrint = (elem) => {
+  const ugly = elem.innerText;
+  console.log(ugly);
+  //const obj = JSON.parse(ugly);
+  //console.log(JSON.stringify(obj, undefined, 4));
+  //elem.innerText = JSON.stringify(obj, undefined, 4);
+};
 

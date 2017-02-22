@@ -1,145 +1,154 @@
-@mixin block($bg-color) {
-  padding: 10px;
+@import "variables";
+
+@mixin block($method-color) {
+  float: left;
+  margin-top: -5px;
+  padding-top: 8px;
+  line-height: 15px;
+  max-width: 90px;
+  font-size: 12px;
+  text-align: center;
   border-radius: 3px;
-  height: 25px;
+  height: 22px;
   color: white;
   width: 100%;
-  background-color: $bg-color;
+  background-color: $method-color;
   text-transform: uppercase;
+  vertical-align: middle;
 }
 
-._all{
-  @include block(black)
+._all {
+  @include block($allColor)
 }
 
 .acl {
-  @include block(#D2481F)
+  @include block($defaultColor)
 }
 
 .bind {
-  @include block(#D2481F)
+  @include block($defaultColor)
 }
 
 .checkout {
-  @include block(#D2481F)
+  @include block($defaultColor)
 }
 
 .connect {
-  @include block(#D2481F)
+  @include block($defaultColor)
 }
 
 .copy {
-  @include block(#D2481F)
+  @include block($defaultColor)
 }
 
 .delete {
-  @include block(#D2481F)
+  @include block($deleteColor)
 }
 
 .get {
-  @include block(#13859F)
+  @include block($getColor)
 }
 
 .head {
-  @include block(#FF7F41)
+  @include block($headColor)
 }
 
 .link {
-  @include block(#13859F)
+  @include block($defaultColor)
 }
 
 .lock {
-  @include block(#13859F)
+  @include block($defaultColor)
 }
 
 .m-search {
-  @include block(#13859F)
+  @include block($defaultColor)
 }
 
 .merge {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .mkactivity {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .mkcalendar {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .mkcol {
-   @include block(#FF7F41)
- }
+  @include block($defaultColor)
+}
 
 .move {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .notify {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .options {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .patch {
-  @include block(#00C1D5)
+  @include block($patchColor)
 }
 
 .post {
-  @include block(#8F67CA)
+  @include block($postColor)
 }
 
 .propfind {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .proppatch {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .purge {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .put {
-  @include block(#C38536)
+  @include block($putColor)
 }
 
 .rebind {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .report {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .search {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .subscribe {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .trace {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .unbind {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .unlink {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .unlock {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }
 
 .unsubscribe {
-  @include block(#FF7F41)
+  @include block($defaultColor)
 }

@@ -1,3 +1,5 @@
+@import "../shared/variables";
+
 .panel {
   display: block;
   width: 100%;
@@ -5,11 +7,15 @@
   background-color: #E6F3F6;
   border-top: solid 1px grey;
 
+  h3 {
+    color: $responseHeadersColor;
+  }
+
   section {
     display: block;
   }
 
-  .deleteBtn{
+  .deleteBtn {
     background-color: red;
     color: white;
   }

@@ -23,7 +23,7 @@ export const showMethodList = (id) => {
 
 export const slideDown = (elem) => {
   const count = elem.getElementsByClassName('method-container').length;
-  const height = ((44 * count) + 1000).toString() + 'px';
+  const height = ((44 * count) + 1500).toString() + 'px';
   elem.style.maxHeight = height;
   elem.style.opacity = '1';
 };
