@@ -26,6 +26,8 @@ app.patch('/text', (req, res) => res.send('PUT'));
 app.post('/text', (req, res) => res.send('POST'));
 app.put('/text', (req, res) => res.send('PUT'));
 
+app.get('/params/:name', (req,res) => res.send(req.params.name));
+
 app.get('/html', (req, res) => {
   res.send('<h1>Hello World!</h1>');
 });

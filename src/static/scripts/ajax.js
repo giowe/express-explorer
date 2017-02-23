@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 import {showMethodList} from './list';
 import {renderJSON, renderXML, renderText} from './render';
 import {getRequestHeaders, getResponseHeader} from './headers';
+import {panelHeight} from './constants';
 
 export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
@@ -25,7 +26,7 @@ export const createRequest = (route, method) => {
     request.body = JSON.parse(body);
   }
 
-  if (resPanel.style.maxHeight !== '1500px') {
+  if (resPanel.style.maxHeight !== `${panelHeight.toString()}px`) {
     window.fetch(url, request)
       .then(res => res)
       .then(res => {
@@ -82,7 +83,7 @@ export const populateResponsePanel = (res, panelID) => {
 
   urlEl.innerHTML = res.url;
   statusEl.innerHTML = res.status;
-  renderJSON(getResponseHeader(res.headers), headerEl);
+  renderJSON(prettyPrint(JSON.stringify(getResponseHeader(res.headers))), headerEl);
   res.text().then(text => createBodyView(text, res.headers.get('Content-Type'), bodyEl));
 
 };
@@ -90,8 +91,7 @@ export const populateResponsePanel = (res, panelID) => {
 export const createBodyView = (text, contentType, container) => {
   switch (contentType) {
     case 'application/json; charset=utf-8':
-      renderText(text, container, '200s');
-      prettyPrint(container.firstChild);
+      renderJSON(prettyPrint(text), container, '200s');
       break;
     case 'text/xml; charset=utf-8':
       renderXML(text, container);
@@ -108,11 +108,5 @@ export const clearPanel = (panel) => {
   }
 };
 
-export const prettyPrint = (elem) => {
-  const ugly = elem.innerText;
-  console.log(ugly);
-  //const obj = JSON.parse(ugly);
-  //console.log(JSON.stringify(obj, undefined, 4));
-  //elem.innerText = JSON.stringify(obj, undefined, 4);
-};
+export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), undefined, 4);
 

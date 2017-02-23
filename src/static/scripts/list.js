@@ -1,3 +1,5 @@
+import {panelHeight} from './constants';
+
 export const showMethodList = (id) => {
   const elem = document.getElementById(id);
   const father = elem.previousElementSibling;
@@ -23,7 +25,7 @@ export const showMethodList = (id) => {
 
 export const slideDown = (elem) => {
   const count = elem.getElementsByClassName('method-container').length;
-  const height = ((44 * count) + 1500).toString() + 'px';
+  const height = ((44 * count) + panelHeight).toString() + 'px';
   elem.style.maxHeight = height;
   elem.style.opacity = '1';
 };
