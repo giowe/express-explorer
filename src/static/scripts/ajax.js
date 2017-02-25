@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import {showMethodList} from './list';
 import {renderJSON, renderXML, renderText} from './render';
 import {getRequestHeaders, getResponseHeader} from './headers';
-import {panelHeight} from './constants';
+import {panelHeight, animationTime} from './constants';
 
 export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
@@ -12,19 +12,22 @@ export const createRequest = (route, method) => {
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
   const headers = getRequestHeaders(inputs);
   const url = getUrl(route, inputs);
-  const request = {
-    method: method,
-    headers: headers,
-    url: url
-  };
+  const request = {method, headers, url};
 
   if (method == 'put' || method == 'post') {
-    let body = document.getElementById(methodContainerID + '-body').value;
-    if (!body) {
-      body = '{}';
+    let bodyContent = document.getElementById(methodContainerID + '-body').value;
+
+    if (!bodyContent) {
+      bodyContent = {};
     }
-    request.body = JSON.parse(body);
+    else {
+      bodyContent = JSON.parse(bodyContent);
+    }
+
+    request.body = JSON.stringify(bodyContent);
   }
+
+  console.log(request);
 
   if (resPanel.style.maxHeight !== `${panelHeight.toString()}px`) {
     window.fetch(url, request)
@@ -44,7 +47,7 @@ export const createRequest = (route, method) => {
   }
   else {
     showMethodList(resPanelID, 'response');
-    window.setTimeout(() => clearPanel(resPanel), 700);
+    window.setTimeout(() => clearPanel(resPanel), animationTime);
   }
 };
 

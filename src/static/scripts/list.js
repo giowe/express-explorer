@@ -1,4 +1,4 @@
-import {panelHeight} from './constants';
+import {panelHeight, animationTime} from './constants';
 
 export const showMethodList = (id) => {
   const elem = document.getElementById(id);
@@ -45,7 +45,8 @@ export const once = (seconds, callback) => {
       callback();
       window.clearInterval(time);
     }
-  }, 700);
+  }, animationTime);
 };
+
 
 
