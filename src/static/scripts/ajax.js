@@ -3,6 +3,7 @@ import {showMethodList} from './list';
 import {renderJSON, renderXML, renderText} from './render';
 import {getRequestHeaders, getResponseHeader} from './headers';
 import {panelHeight, animationTime} from './constants';
+import {getSettings} from './settings';
 
 export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
@@ -10,7 +11,7 @@ export const createRequest = (route, method) => {
   const resPanelID = methodContainerID + '-response';
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
-  const headers = new Headers(getRequestHeaders(inputs));
+  const headers = new Headers(Object.assign(JSON.parse(getSettings()), getRequestHeaders(inputs)));
   const url = getUrl(route, inputs);
   const request = {
     method, headers, url
