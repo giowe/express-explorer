@@ -1,8 +1,8 @@
 <section class="settings-panel" id="settingsPanel">
   <h2>Settings</h2>
   <p class="close-panel" onclick="Lib.default.closeSettings('settingsPanel')">X</p>
-  <%- include('./components/params.ejs',{title:"Default Headers",baseID:"defHd" }) %>
-  <%- include('./components/params.ejs',{title:"Cookies",baseID:"defCookie" }) %>
+  <%- include('./components/params.ejs',{title:"Headers",baseID:"defHd" }) %>
+  <button class="pure-button pure-button-primary" onclick="Lib.default.setSettings()">update settings</button>
 </section>
 
 <img class="settings-trigger" id="settingsTrigger"

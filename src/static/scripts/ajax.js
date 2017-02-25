@@ -10,9 +10,11 @@ export const createRequest = (route, method) => {
   const resPanelID = methodContainerID + '-response';
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
-  const headers = getRequestHeaders(inputs);
+  const headers = new Headers(getRequestHeaders(inputs));
   const url = getUrl(route, inputs);
-  const request = {method, headers, url};
+  const request = {
+    method, headers, url
+  };
 
   if (method == 'put' || method == 'post') {
     let bodyContent = document.getElementById(methodContainerID + '-body').value;
@@ -25,9 +27,8 @@ export const createRequest = (route, method) => {
     }
 
     request.body = JSON.stringify(bodyContent);
+    console.log(request);
   }
-
-  console.log(request);
 
   if (resPanel.style.maxHeight !== `${panelHeight.toString()}px`) {
     window.fetch(url, request)

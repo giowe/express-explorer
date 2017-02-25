@@ -20,7 +20,7 @@ export const getRequestHeaders = (inputs) => {
     headers[headerKeys[i]] = headerValues[i];
   }
 
-  return new Headers(headers);
+  return headers;
 };
 
 export const getResponseHeader = (headers) => {
