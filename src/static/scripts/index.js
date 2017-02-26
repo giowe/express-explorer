@@ -5,6 +5,8 @@ import * as render from './render';
 import * as headers from './headers';
 import * as settings from './settings';
 
+settings.generateSettingsPanel();
+
 export default Object.assign(params, list, ajax, render, headers, settings);
 
 

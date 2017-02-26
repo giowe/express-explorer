@@ -5,13 +5,15 @@ export const getRequestHeaders = (inputs) => {
 
   for (let i = 0; i < inputs.length - 2; i++) {
     const input = inputs[i];
+    let empty = false;
 
     if (input.getAttribute('target') == 'Headers') {
       if (input.getAttribute('placeholder') == 'key') {
-        headerKeys.push(input.value);
+        empty = !input.value;
+        if (!empty) headerKeys.push(input.value);
       }
       else {
-        headerValues.push(input.value);
+        if (!empty) headerValues.push(input.value);
       }
     }
   }
@@ -33,3 +35,8 @@ export const getResponseHeader = (headers) => {
   return resHeader;
 };
 
+export const mergeHeaders = (headers1 = {}, headers2 = {}) => {
+  console.log(headers1);
+  console.log(headers2);
+  return Object.assign(headers1, headers2)
+};

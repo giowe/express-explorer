@@ -17,20 +17,10 @@ const testJSON = {
   ]
 };
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
 app.use(bodyParser.json());
 app.use('/explorer', explorer());
 app.use('/', express.static(__dirname + '/build'));
-app.use((req, res, next) => {
-  console.log(req.body);
-  next();
-});
+
 
 app.get('/text', (req, res) => res.send('GET'));
 app.head('/text', (req, res) => res.send('HEAD'));

@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import {showMethodList} from './list';
 import {renderJSON, renderXML, renderText} from './render';
-import {getRequestHeaders, getResponseHeader} from './headers';
+import {getRequestHeaders, getResponseHeader, mergeHeaders} from './headers';
 import {panelHeight, animationTime} from './constants';
 import {getSettings} from './settings';
 
@@ -11,7 +11,7 @@ export const createRequest = (route, method) => {
   const resPanelID = methodContainerID + '-response';
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
-  const headers = new Headers(Object.assign(JSON.parse(getSettings()), getRequestHeaders(inputs)));
+  const headers = new Headers(mergeHeaders(JSON.parse(getSettings()), getRequestHeaders(inputs)));
   const url = getUrl(route, inputs);
   const request = {
     method, headers, url
@@ -113,5 +113,5 @@ export const clearPanel = (panel) => {
   }
 };
 
-export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), undefined, 4);
+export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), undefined, 1);
 
