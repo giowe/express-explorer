@@ -1,11 +1,6 @@
 @import "../shared/variables";
 
 .panel {
-  display: block;
-  width: 100%;
-  text-align: center;
-  background-color: #E6F3F6;
-  border-top: solid 1px grey;
 
   h3 {
     color: $responseHeadersColor;

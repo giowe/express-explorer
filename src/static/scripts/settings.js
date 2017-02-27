@@ -25,7 +25,7 @@ export const generateSettingsPanel = () => {
   const context = document.getElementById('settingsPanel');
   const input = context.getElementsByTagName('input')[0];
 
-  for (let i = 0; i < Object.keys(JSON.parse(settings)).length-1; i++) {
+  for (let i = 0; i < Object.keys(JSON.parse(settings)).length - 1; i++) {
     addParam(input, `defHd-params-${i}`, 'defHd-container-params', false);
   }
 

@@ -4,7 +4,7 @@ baseHeadersID = route + '-' + method + '-Headers';
 params = getParams(route);
 %>
 
-<form class="panel slider" id="<%= (route + "/" + method) %>">
+<form class="panel <%= method %>-panel-container slider" id="<%= (route + "/" + method) %>">
   <h3>Request</h3>
 
   <% if(params.length > 0){ %>

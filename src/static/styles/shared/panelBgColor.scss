@@ -1,0 +1,146 @@
+@import "variables";
+
+@mixin panel($BgColor) {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: $BgColor;
+  border-top: solid 1px grey;
+}
+
+
+._all-panel-container {
+  @include panel($allBgColor)
+}
+
+.acl-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.bind-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.checkout-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.connect-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.copy-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.delete-panel-container {
+  @include panel($deleteBgColor)
+}
+
+.get-panel-container {
+  @include panel($getBgColor)
+}
+
+.head-panel-container{
+  @include panel($headBgColor)
+}
+
+.link-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.lock-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.m-search-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.merge-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.mkactivity-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.mkcalendar-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.mkcol-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.move-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.notify-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.options-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.patch-panel-container {
+  @include panel($patchBgColor)
+}
+
+.post-panel-container {
+  @include panel($postBgColor)
+}
+
+.propfind-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.proppatch-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.purge-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.put-panel-container {
+  @include panel($putBgColor)
+}
+
+.rebind-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.report-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.search-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.subscribe-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.trace-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.unbind-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.unlink-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.unlock-panel-container {
+  @include panel($defaultBgColor)
+}
+
+.unsubscribe-panel-container {
+  @include panel($defaultBgColor)
+}

@@ -1,18 +1,6 @@
 @import "../shared/variables";
 @import "../shared/methodColors";
 
-.method-container {
-  overflow: hidden;
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  font-size: 15px;
-  height: 25px;
-  padding-top: 5px;
-  background-color: #E6F3F6;
-  cursor: pointer;
-}
-
 .method-route{
   font-size: 17px;
   margin-left: 10px;

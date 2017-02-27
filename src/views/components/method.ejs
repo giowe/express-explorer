@@ -1,4 +1,5 @@
-<div class="method-container" onclick="Lib.default.showMethodList('<%= (route + "/" + method) %>', 'panel')">
+<div class="<%= method %>-container"
+     onclick="Lib.default.showMethodList('<%= (route + "/" + method) %>', 'panel')">
   <span class="<%= method %>"><%= method %></span>
   <span class="method-route"><%= route %> </span>
   <span class="right">open testing panel</span>

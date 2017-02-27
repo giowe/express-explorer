@@ -1,0 +1,154 @@
+@import "variables";
+
+@mixin method-container($bgColor,$textColor) {
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  font-size: 15px;
+  height: 25px;
+  padding-top: 5px;
+  background-color: $bgColor;
+  cursor: pointer;
+
+  .right {
+    color: $textColor;
+  }
+}
+
+._all-container {
+  @include method-container($allColor, $defaultColor)
+}
+
+.acl-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.bind-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.checkout-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.connect-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.copy-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.delete-container {
+  @include method-container($deleteBgColor, $deleteColor)
+}
+
+.get-container {
+  @include method-container($getBgColor, $getColor)
+}
+
+.head-container {
+  @include method-container($headBgColor, $headColor)
+}
+
+.link-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.lock-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.m-search-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.merge-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.mkactivity-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.mkcalendar-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.mkcol-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.move-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.notify-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.options-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.patch-container {
+  @include method-container($patchBgColor, $patchColor)
+}
+
+.post-container {
+  @include method-container($postBgColor, $postColor)
+}
+
+.propfind-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.proppatch-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.purge-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.put-container {
+  @include method-container($putBgColor, $putColor)
+}
+
+.rebind-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.report-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.search-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.subscribe-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.trace-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.unbind-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.unlink-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.unlock-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
+.unsubscribe-container {
+  @include method-container($defaultBgColor, $defaultColor)
+}
+
