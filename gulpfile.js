@@ -8,16 +8,9 @@ const cleanCss = require('gulp-clean-css');
 const uglify   = require('gulp-uglify');
 const nodemon  = require('gulp-nodemon');
 const replace  = require('gulp-replace');
-const install  = require('gulp-install');
 const del      = require('del');
 const webpack  = require('webpack-stream');
 const config   = require('./webpack.config');
-
-gulp.task('postinstall', () => {
-  gulp.src('src/package.json')
-    .pipe(gulp.dest('./'))
-    .pipe(install())
-});
 
 gulp.task('clean', () => {
   return del.sync('./build');
@@ -61,8 +54,9 @@ gulp.task('root-files', () => {
 });
 
 gulp.task('package', () => {
-  gulp.src('./src/package.json')
+  gulp.src('./package.json')
     .pipe(replace('"private": true', '"private": false'))
+    .pipe(replace(/,([^}]+)"devDependencies"([^}]+)}/, ''))
     .pipe(gulp.dest('./build'));
 });
 
