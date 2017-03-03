@@ -9,18 +9,19 @@ export const showMethodList = (id) => {
     description = father.getElementsByClassName('right')[0];
   }
 
-  if (elem.style.opacity == 0) {
-    slideDown(elem);
+  console.log(elem.style.display);
+
+  if (elem.style.display == 'none' || elem.style.display == '') {
+    elem.style.display = 'block';
     if (description) description.innerHTML = `close testing panel`;
   }
   else {
-    slideUp(elem);
-    window.setTimeout(() => {
-      if (description && father.classList.contains('method-container')) {
-        description.innerHTML = `open testing panel`;
-      }
-    }, 650);
+    elem.style.display = 'none';
+    if (description && father.classList.contains('method-container')) {
+      description.innerHTML = `open testing panel`;
+    }
   }
+
 };
 
 export const slideDown = (elem) => {

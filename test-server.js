@@ -36,7 +36,6 @@ app.get('/html', (req, res) => {
 });
 
 app.get('/json', (req, res) => {
-  console.log(req);
   res.json(testJSON);
 });
 

@@ -2,10 +2,10 @@
 @import "variables";
 
 .slider {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.7s ease 0s;
+  display: none;
+  //opacity: 0;
+  //overflow: hidden;
+  //transition: max-height 0.7s ease 0s;
 }
 
 .slide-from-right {
