@@ -18,9 +18,9 @@ export const createRequest = (route, method) => {
   };
   const bodyMethods = ['put', 'post'];
 
-  if (method in bodyMethods) {
+  if (bodyMethods.includes(method)) {
     let bodyContent = document.getElementById(methodContainerID + '-body').value;
-
+    console.dir(document.getElementById(methodContainerID + '-body'));
     if (!bodyContent) {
       bodyContent = {};
     }
@@ -29,7 +29,7 @@ export const createRequest = (route, method) => {
     }
 
     request.body = JSON.stringify(bodyContent);
-    console.log(request);
+    console.log(bodyContent);
   }
 
   window.fetch(url, request)
