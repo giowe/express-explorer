@@ -9,7 +9,6 @@ export const showMethodList = (id) => {
     description = father.getElementsByClassName('right')[0];
   }
 
-  console.log(elem.style.display);
 
   if (elem.style.display == 'none' || elem.style.display == '') {
     elem.style.display = 'block';

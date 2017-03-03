@@ -9,6 +9,7 @@ export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
   const methodContainerID = route + '/' + method;
   const resPanelID = methodContainerID + '-response';
+  const loading = document.getElementById(methodContainerID + '-loadingText');
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
   const headers = new Headers(mergeHeaders(JSON.parse(getSettings()), getRequestHeaders(inputs)));
@@ -32,26 +33,29 @@ export const createRequest = (route, method) => {
     console.log(request);
   }
 
-  if (resPanel.style.display == 'none' || resPanel.style.display == '') {
-    window.fetch(url, request)
-      .then(res => res)
-      .then(res => {
-        const resTime = (new Date()).getTime() - startTime;
+
+  window.fetch(url, request)
+    .then(res => res)
+    .then(res => {
+      const resTime = (new Date()).getTime() - startTime;
+      clearPanel(resPanel);
+      loading.style.display = 'none';
+      populateResponsePanel(res, resPanelID, resTime, route);
+      if (resPanel.style.display = 'none') {
         showMethodList(resPanelID, 'response');
-        populateResponsePanel(res, resPanelID, resTime, route);
-      })
-      .catch(res => {
-        const container = document.getElementById(methodContainerID);
-        const warning = document.createElement('p');
-        warning.style.color = 'red';
-        warning.innerHTML = 'CONNECTION REFUSED!';
-        container.insertBefore(warning, container.childNodes[container.childNodes.length - 4]);
-      });
-  }
-  else {
-    showMethodList(resPanelID, 'response');
-    clearPanel(resPanel);
-  }
+      }
+    })
+    .catch(res => {
+      loading.style.display = 'none';
+      clearPanel(resPanel);
+      const container = document.getElementById(methodContainerID);
+      const warning = document.createElement('p');
+      warning.style.color = 'red';
+      warning.innerHTML = 'CONNECTION REFUSED!';
+      container.insertBefore(warning, container.childNodes[container.childNodes.length - 4]);
+    });
+
+
 };
 
 export const getUrl = (route, inputs) => {
@@ -110,12 +114,13 @@ export const createBodyView = (text, contentType, container) => {
 export const clearPanel = (panel) => {
   const divs = panel.getElementsByClassName('clearable');
   for (let i = 0; i < divs.length; i++) {
-    console.log('ciao');
     divs[i].style.display = 'none';
   }
 };
 
 export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), undefined, 1);
+
+
 
 
 

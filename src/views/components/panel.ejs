@@ -30,6 +30,7 @@ params = getParams(route);
           onclick="Lib.default.createRequest('<%= route %>','<%= method %>')"
   >Test!
   </button>
-  <hr class="closer">
+  <p id="<%= (route + "/" + method + "-loadingText") %>"> Loading...</p>
+  <hr class=" closer">
   <%- include('./response.ejs',{route,method}) %>
 </form>
