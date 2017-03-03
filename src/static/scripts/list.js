@@ -11,14 +11,14 @@ export const showMethodList = (id) => {
 
 
   if (elem.style.display == 'none' || elem.style.display == '') {
-    elem.style.display = 'block';
     if (description) description.innerHTML = `close testing panel`;
+    elem.style.display = 'block';
   }
   else {
-    elem.style.display = 'none';
-    if (description && father.classList.contains('method-container')) {
+    if (description) {
       description.innerHTML = `open testing panel`;
     }
+    elem.style.display = 'none';
   }
 
 };
