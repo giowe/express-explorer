@@ -39,6 +39,11 @@ export const generateSettingsPanel = () => {
   }
 
   const inputs = context.getElementsByTagName('input');
-
-  fillParamsFromObject(inputs, settings);
+  if (settings == '{}') {
+    inputs[0].value = '';
+    inputs[1].value = '';
+  }
+  else {
+    fillParamsFromObject(inputs, settings);
+  }
 };
