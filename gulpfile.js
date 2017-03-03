@@ -17,7 +17,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('images', () => {
-  gulp.src('src/static/images/*.*')
+  return gulp.src('src/static/images/*.*')
     .pipe(imagemin({
       optimizationLevel: 3, //png
       progressive: true,    //jpg
@@ -30,7 +30,7 @@ gulp.task('images', () => {
 });
 
 gulp.task('sass', () => {
-  gulp.src('./src/static/styles/index.scss')
+  return gulp.src('./src/static/styles/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('styles.min.css'))
     .pipe(cleanCss({compatibility: 'ie8'}))
@@ -38,23 +38,23 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
-  gulp.src('./src/static/scripts/index.js')
+  return gulp.src('./src/static/scripts/index.js')
     .pipe(webpack(config))
     .pipe(gulp.dest('./build/static'));
 });
 
 gulp.task('views', () => {
-  gulp.src(['./src/views/**/*'])
+  return gulp.src(['./src/views/**/*'])
     .pipe(gulp.dest('./build/views'));
 });
 
 gulp.task('root-files', () => {
-  gulp.src('./src/express-explorer.js')
+  return gulp.src('./src/express-explorer.js')
     .pipe(gulp.dest('./build'));
 });
 
 gulp.task('package', () => {
-  gulp.src('./package.json')
+  return gulp.src('./package.json')
     .pipe(replace('"private": true', '"private": false'))
     .pipe(replace(/,([^}]+)"devDependencies"([^}]+)}/, ''))
     .pipe(gulp.dest('./build'));
@@ -71,7 +71,7 @@ gulp.task('watch', () => {
 gulp.task('build', ['clean', 'images', 'sass', 'js', 'views', 'root-files', 'package']);
 
 gulp.task('serve', ['build'], () => {
-  nodemon({
+  return nodemon({
     script: 'test-server.js',
     watch: ['test-server.js', 'src/express-explorer.js', 'src/package.json']
   })
