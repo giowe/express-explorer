@@ -18,7 +18,13 @@
   border: 1px solid #ddd;
   z-index: 1;
 
-  button{
+  h2 {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #dddddd;
+    margin: 5%;
+  }
+
+  button {
     margin-top: 2%;
   }
 
@@ -31,12 +37,12 @@
   z-index: 0;
 }
 
-.close-panel{
+.close-panel {
   font-size: 20px;
   position: absolute;
   top: 5%;
   left: 5%;
   margin: 0;
-  font-family: Verdana,sans-serif;
+  font-family: Verdana, sans-serif;
   cursor: pointer;
 }

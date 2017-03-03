@@ -16,11 +16,16 @@ export const createRequest = (route, method) => {
   const request = {
     method, headers, url
   };
+
+  const warnings = document.getElementsByClassName(methodContainerID + '-warningText');
+  if (warnings.length > 0) {
+    for (let i = 0; i < warnings.length; i++) warnings[i].style.display = 'none';
+  }
+
   const bodyMethods = ['put', 'post'];
 
   if (bodyMethods.includes(method)) {
     let bodyContent = document.getElementById(methodContainerID + '-body').value;
-    console.dir(document.getElementById(methodContainerID + '-body'));
     if (!bodyContent) {
       bodyContent = {};
     }
@@ -29,8 +34,8 @@ export const createRequest = (route, method) => {
     }
 
     request.body = JSON.stringify(bodyContent);
-    console.log(bodyContent);
   }
+
 
   window.fetch(url, request)
     .then(res => res)
@@ -47,6 +52,7 @@ export const createRequest = (route, method) => {
       const container = document.getElementById(methodContainerID);
       const warning = document.createElement('p');
       warning.style.color = 'red';
+      warning.className = methodContainerID + '-warningText';
       warning.innerHTML = 'CONNECTION REFUSED!';
       container.insertBefore(warning, container.childNodes[container.childNodes.length - 4]);
     });
@@ -63,7 +69,8 @@ export const getUrl = (route, inputs) => {
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
     if (inputs[i].getAttribute('target') == "Params") {
-      params.push(input.value);
+      if (input.value) params.push(input.value);
+      else return new Error('undefined params')
     }
   }
 

@@ -36,7 +36,5 @@ export const getResponseHeader = (headers) => {
 };
 
 export const mergeHeaders = (headers1 = {}, headers2 = {}) => {
-  console.log(headers1);
-  console.log(headers2);
   return Object.assign(headers1, headers2)
 };
