@@ -13,7 +13,16 @@ export const closeSettings = (panelID) => {
   panel.classList.add('slide-from-right');
 };
 
-export const getSettings = () => window.localStorage.getItem('default-settings');
+export const getSettings = () => {
+  let settings = window.localStorage.getItem('default-settings');
+  if (settings) {
+    return settings;
+  }
+  else {
+    window.localStorage.setItem('default-settings', '{}');
+    return "{}";
+  }
+};
 
 export const setSettings = () => {
   const inputs = document.getElementById('settingsPanel').getElementsByTagName('input');
