@@ -59,6 +59,10 @@ app.get('/error', (req, res) => {
   );
 });
 
+app.get('/route/subRoute/:param/route/:param2/routre', (req, res) => {
+  res.send('<h1>Hello World from subroute</h1>');
+});
+
 app.all('*', (req, res) => {
   res.send('all');
 });

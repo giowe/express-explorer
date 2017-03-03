@@ -11,7 +11,8 @@ params = getParams(route);
   <section>
     <p>Params</p>
     <% params.forEach(param => { %>
-    <input type="text" placeholder="<%= param %>" target="Params"></input>
+    <input type="text" class="paramsInput" placeholder="<%= param %>" target="Params"></input>
+    <br>
     <% }) %>
   </section>
 
@@ -30,7 +31,6 @@ params = getParams(route);
           onclick="Lib.default.createRequest('<%= route %>','<%= method %>')"
   >Test!
   </button>
-  <p id="<%= (route + "/" + method + "-loadingText") %>"> Loading...</p>
   <hr class=" closer">
   <%- include('./response.ejs',{route,method}) %>
 </form>

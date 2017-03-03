@@ -9,7 +9,6 @@ export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
   const methodContainerID = route + '/' + method;
   const resPanelID = methodContainerID + '-response';
-  const loading = document.getElementById(methodContainerID + '-loadingText');
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
   const headers = new Headers(mergeHeaders(JSON.parse(getSettings()), getRequestHeaders(inputs)));
@@ -33,20 +32,17 @@ export const createRequest = (route, method) => {
     console.log(request);
   }
 
-
   window.fetch(url, request)
     .then(res => res)
     .then(res => {
       const resTime = (new Date()).getTime() - startTime;
       clearPanel(resPanel);
-      loading.style.display = 'none';
       populateResponsePanel(res, resPanelID, resTime, route);
       if (resPanel.style.display = 'none') {
         showMethodList(resPanelID, 'response');
       }
     })
     .catch(res => {
-      loading.style.display = 'none';
       clearPanel(resPanel);
       const container = document.getElementById(methodContainerID);
       const warning = document.createElement('p');
@@ -59,9 +55,8 @@ export const createRequest = (route, method) => {
 };
 
 export const getUrl = (route, inputs) => {
-
   const segments = route.split('/');
-  let url = '/' + segments[1];
+  let url = '';
   let params = [];
   let j = 0;
 
@@ -79,10 +74,13 @@ export const getUrl = (route, inputs) => {
       url += '/' + params[j];
       j++;
     }
+    else {
+      url += '/' + segment;
+    }
 
   }
 
-  return url;
+  return url.slice(1);
 };
 
 export const populateResponsePanel = (res, panelID) => {

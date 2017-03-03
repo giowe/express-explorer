@@ -6,7 +6,6 @@
     color: $responseHeadersColor;
   }
 
-
   .bodyInput {
     width: 50%;
     height: 100px;
@@ -19,6 +18,15 @@
 
   .closer {
     margin-bottom: 0;
+  }
+
+  .loadingText {
+    display: none;
+    font-size: 14px;
+  }
+
+  .paramsInput {
+    margin-top: 1%;
   }
 
 }
