@@ -16,8 +16,9 @@ export const createRequest = (route, method) => {
   const request = {
     method, headers, url
   };
+  const bodyMethods = ['put', 'post'];
 
-  if (method == 'put' || method == 'post') {
+  if (method in bodyMethods) {
     let bodyContent = document.getElementById(methodContainerID + '-body').value;
 
     if (!bodyContent) {
@@ -31,7 +32,7 @@ export const createRequest = (route, method) => {
     console.log(request);
   }
 
-  if (resPanel.style.maxHeight !== `${panelHeight.toString()}px`) {
+  if (resPanel.style.display == 'none' || resPanel.style.display == '') {
     window.fetch(url, request)
       .then(res => res)
       .then(res => {
@@ -49,7 +50,7 @@ export const createRequest = (route, method) => {
   }
   else {
     showMethodList(resPanelID, 'response');
-    window.setTimeout(() => clearPanel(resPanel), animationTime);
+    clearPanel(resPanel);
   }
 };
 
@@ -109,9 +110,12 @@ export const createBodyView = (text, contentType, container) => {
 export const clearPanel = (panel) => {
   const divs = panel.getElementsByClassName('clearable');
   for (let i = 0; i < divs.length; i++) {
+    console.log('ciao');
     divs[i].style.display = 'none';
   }
 };
 
 export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), undefined, 1);
+
+
 
