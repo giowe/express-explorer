@@ -1,3 +1,5 @@
+import {updateSettings, getSettings} from './settings';
+
 export const getLastParam = (container) => {
   const params = container.getElementsByClassName('param');
   const length = params.length;
@@ -31,6 +33,9 @@ export const addParam = (context, elementID, containerID, limit = true) => {
 
 export const deleteParam = (context) => {
   const parent = context.parentNode;
+  const settings = JSON.parse(getSettings());
+  delete settings[parent.getElementsByTagName('input')[0].value];
+  window.localStorage.setItem('default-settings', JSON.stringify(settings));
   if (parseInt(parent.getAttribute('index')) > 0) parent.remove();
 };
 

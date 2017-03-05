@@ -2,7 +2,6 @@ import 'whatwg-fetch';
 import {showMethodList} from './list';
 import {renderJSON, renderXML, renderText} from './render';
 import {getRequestHeaders, getResponseHeader, mergeHeaders} from './headers';
-import {panelHeight, animationTime} from './constants';
 import {getSettings} from './settings';
 
 export const createRequest = (route, method) => {
@@ -36,7 +35,6 @@ export const createRequest = (route, method) => {
     request.body = JSON.stringify(bodyContent);
   }
 
-
   window.fetch(url, request)
     .then(res => res)
     .then(res => {
@@ -56,7 +54,6 @@ export const createRequest = (route, method) => {
       warning.innerHTML = 'CONNECTION REFUSED!';
       container.insertBefore(warning, container.childNodes[container.childNodes.length - 4]);
     });
-
 
 };
 

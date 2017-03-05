@@ -5,10 +5,12 @@
            target="<%= title %>"
            id="<%= baseID + '-key-0' %>"
            onfocus="Lib.default.addParam(this,'<%= baseID + '-params-0' %>','<%= baseID + '-container-params' %>')"
+           onblur="Lib.default.updateSettings('<%= baseID %>')"
     >
     <input type="text" placeholder="value"
            target="<%= title %>"
            id="<%= baseID + '-value-0' %>"
+           onblur="Lib.default.updateSettings('<%= baseID %>')"
     >
     <button type="button" class="pure-button-secondary deleteBtn"
             onclick="Lib.default.deleteParam(this)">X

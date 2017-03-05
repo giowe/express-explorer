@@ -24,9 +24,11 @@ export const getSettings = () => {
   }
 };
 
-export const setSettings = () => {
-  const inputs = document.getElementById('settingsPanel').getElementsByTagName('input');
-  window.localStorage.setItem('default-settings', JSON.stringify(getRequestHeaders(inputs)));
+export const updateSettings = (context) => {
+  if (context == 'defHd') {
+    const inputs = document.getElementById('settingsPanel').getElementsByTagName('input');
+    window.localStorage.setItem('default-settings', JSON.stringify(getRequestHeaders(inputs)));
+  }
 };
 
 export const generateSettingsPanel = () => {

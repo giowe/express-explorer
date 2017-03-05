@@ -27,6 +27,7 @@ params = getParams(route);
   </section>
   <% } %>
 
+  <%- include('./selector.ejs') %>
   <button type="button" class="pure-button-primary sendBtn"
           onclick="Lib.default.createRequest('<%= route %>','<%= method %>')"
   >Test!
