@@ -11,10 +11,13 @@ export const createRequest = (route, method) => {
   const resPanel = document.getElementById(resPanelID);
   const inputs = document.getElementById(methodContainerID).getElementsByTagName('input');
   const headers = new Headers(mergeHeaders(JSON.parse(getSettings()), getRequestHeaders(inputs)));
-  const url = getUrl(route, inputs);
+  const queryString = document.getElementById(methodContainerID + '-query-string').value;
+  const prefix = queryString ? '?' : '';
+  const url = getUrl(route, inputs) + prefix + queryString;
   const request = {
     method, headers, url
   };
+
 
   const warnings = document.getElementsByClassName(methodContainerID + '-warningText');
   if (warnings.length > 0) {

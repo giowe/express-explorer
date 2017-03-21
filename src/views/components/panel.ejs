@@ -11,7 +11,7 @@ params = getParams(route);
   <section>
     <p>Params</p>
     <% params.forEach(param => { %>
-    <input type="text" class="paramsInput" placeholder="<%= param %>" target="Params"></input>
+    <input type="text" class="paramsInput" placeholder="<%= param %>" target="Params">
     <br>
     <% }) %>
   </section>
@@ -20,6 +20,13 @@ params = getParams(route);
   <%- include('./params.ejs',{title:"Headers",baseID:baseHeadersID })
   %>
 
+  <section>
+    <p>Query String</p>
+    <input type="text" placeholder="string" class="queryInput"
+           id="<%= (route + "/" + method + "-query-string") %>">
+    <br>
+  </section>
+
   <% if(method == "post" || method == "put"){ %>
   <section>
     <p>Body</p>
@@ -27,7 +34,7 @@ params = getParams(route);
   </section>
   <% } %>
 
-  <%- include('./selector.ejs') %>
+ <!-- <%- include('./selector.ejs') %>-->
   <button type="button" class="pure-button-primary sendBtn"
           onclick="Lib.default.createRequest('<%= route %>','<%= method %>')"
   >Test!
