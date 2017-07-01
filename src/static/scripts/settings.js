@@ -1,5 +1,5 @@
-import {getRequestHeaders} from './headers';
-import {addParam, fillParamsFromObject} from './params';
+import { getRequestHeaders } from './headers';
+import { addParam, fillParamsFromObject } from './params';
 
 export const openSettings = (panelID) => {
   const panel = document.getElementById(panelID);
@@ -14,18 +14,18 @@ export const closeSettings = (panelID) => {
 };
 
 export const getSettings = () => {
-  let settings = window.localStorage.getItem('default-settings');
+  const settings = window.localStorage.getItem('default-settings');
   if (settings) {
     return settings;
   }
   else {
     window.localStorage.setItem('default-settings', '{}');
-    return "{}";
+    return '{}';
   }
 };
 
 export const updateSettings = (context) => {
-  if (context == 'defHd') {
+  if (context === 'defHd') {
     const inputs = document.getElementById('settingsPanel').getElementsByTagName('input');
     window.localStorage.setItem('default-settings', JSON.stringify(getRequestHeaders(inputs)));
   }
@@ -41,7 +41,7 @@ export const generateSettingsPanel = () => {
   }
 
   const inputs = context.getElementsByTagName('input');
-  if (settings == '{}') {
+  if (settings === '{}') {
     inputs[0].value = '';
     inputs[1].value = '';
   }

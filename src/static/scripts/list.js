@@ -1,4 +1,4 @@
-import {panelHeight, animationTime} from './constants';
+import { panelHeight, animationTime } from './constants';
 
 export const showMethodList = (id) => {
   const elem = document.getElementById(id);
@@ -10,8 +10,8 @@ export const showMethodList = (id) => {
   }
 
 
-  if (elem.style.display == 'none' || elem.style.display == '') {
-    if (description) description.innerHTML = `close testing panel`;
+  if (elem.style.display === 'none' || elem.style.display === '') {
+    if (description) description.innerHTML = 'close testing panel';
     elem.style.display = 'block';
   }
   else {
@@ -25,8 +25,7 @@ export const showMethodList = (id) => {
 
 export const slideDown = (elem) => {
   const count = elem.getElementsByClassName('method-container').length;
-  const height = ((44 * count) + panelHeight).toString() + 'px';
-  elem.style.maxHeight = height;
+  elem.style.maxHeight = ((44 * count) + panelHeight).toString() + 'px';;
   elem.style.opacity = '1';
 };
 
@@ -47,6 +46,3 @@ export const once = (seconds, callback) => {
     }
   }, animationTime);
 };
-
-
-

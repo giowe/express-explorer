@@ -1,8 +1,8 @@
 import 'whatwg-fetch';
-import {showMethodList} from './list';
-import {renderJSON, renderXML, renderText} from './render';
-import {getRequestHeaders, getResponseHeader, mergeHeaders} from './headers';
-import {getSettings} from './settings';
+import { showMethodList } from './list';
+import { renderJSON, renderText } from './render';
+import { getRequestHeaders, getResponseHeader, mergeHeaders } from './headers';
+import { getSettings } from './settings';
 
 export const createRequest = (route, method) => {
   const startTime = (new Date()).getTime();
@@ -44,11 +44,11 @@ export const createRequest = (route, method) => {
       const resTime = (new Date()).getTime() - startTime;
       clearPanel(resPanel);
       populateResponsePanel(res, resPanelID, resTime, route);
-      if (resPanel.style.display = 'none') {
+      if (resPanel.style.display === 'none') {
         showMethodList(resPanelID, 'response');
       }
     })
-    .catch(res => {
+    .catch(() => {
       clearPanel(resPanel);
       const container = document.getElementById(methodContainerID);
       const warning = document.createElement('p');
@@ -63,28 +63,27 @@ export const createRequest = (route, method) => {
 export const getUrl = (route, inputs) => {
   const segments = route.split('/');
   let url = '';
-  let params = [];
+  const params = [];
   let j = 0;
 
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
-    if (inputs[i].getAttribute('target') == "Params") {
+    if (inputs[i].getAttribute('target') === 'Params') {
       if (input.value) params.push(input.value);
-      else return new Error('undefined params')
+      else return new Error('undefined params');
     }
   }
 
   for (let i = 0; i < segments.length; i++) {
     const segment = segments[i];
 
-    if (segment[0] == ':') {
+    if (segment[0] === ':') {
       url += '/' + params[j];
       j++;
     }
     else {
       url += '/' + segment;
     }
-
   }
 
   return url.slice(1);
@@ -108,11 +107,8 @@ export const createBodyView = (text, contentType, container) => {
     case 'application/json; charset=utf-8':
       renderJSON(prettyPrint(text), container, '200s');
       break;
-    case 'text/xml; charset=utf-8':
-      renderXML(text, container);
-      break;
     default:
-      renderText(text, container, '95')
+      renderText(text, container, '95');
   }
 };
 

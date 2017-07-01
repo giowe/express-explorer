@@ -6,17 +6,14 @@ const express = require('express');
 const path    = require('path');
 const Layer   = require('express/lib/router/layer');
 const Router  = require('express/lib/router');
-const fs      = require('fs');
 const ejs     = require('ejs');
 
 let pkg;
 try {
   pkg = require('../../package.json');
-} catch(err) {
-  pkg = {name: 'express-explorer'}
+} catch(ignore) {
+  pkg = {};
 }
-
-const routes = {};
 
 Router.use = function use(fn) {
   let offset = 0;
@@ -60,21 +57,6 @@ Router.use = function use(fn) {
   return this;
 };
 
-const getParams = (route) => {
-    const segments = route.split('/');
-    let params = [];
-
-    for (let i = 0; i < segments.length; i++) {
-        let segment = segments[i];
-
-        if (segment[0] == ":") {
-            params.push(segment.slice(1));
-        }
-    }
-
-    return params;
-};
-
 module.exports = (options) => {
   this.options = Object.assign({
     format: 'html'
@@ -82,34 +64,50 @@ module.exports = (options) => {
 
   return [
     express.static(path.join(__dirname, 'static')),
-
-    (req, res) => {
-      dig(req.app._router.stack);
-      const query = req.query || {};
-
-      const format = query.format || this.options.format;
-      if (format === 'json') res.json(routes);
-      else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
-        routes,
-        project: pkg,
-        getParams
-      }, (err, result) => {
-        if (err) {
-          console.log(err);
-          return res.send(err);
-        }
-        res.send(result);
-      });
-    }
+    explorerMiddleware
   ];
 };
 
-function dig(stack, prefix) {
+const getParams = (route) => {
+  const segments = route.split('/');
+  const params = [];
+
+  for (let i = 0; i < segments.length; i++) {
+    const segment = segments[i];
+
+    if (segment[0] === ':') {
+      params.push(segment.slice(1));
+    }
+  }
+
+  return params;
+};
+
+const explorerMiddleware = (req, res) => {
+  const routes = _dig(req.app._router.stack);
+  Object.keys(routes).forEach(route => routes[route] = Object.keys(routes[route]).sort());
+
+  const query = req.query || {};
+
+  const format = query.format || this.options.format;
+  if (format === 'json') res.json(routes);
+  else ejs.renderFile(path.join(__dirname, './views/index.ejs'), {
+    routes,
+    project: pkg,
+    getParams
+  }, (err, result) => {
+    if (err) return res.send(err);
+    res.send(result);
+  });
+};
+
+const _dig = (stack, prefix) => {
+  const routes = {};
   prefix = prefix || '';
   stack.forEach(layer => {
     const route = layer.route;
     if (layer.name === 'router') {
-      dig(layer.handle.stack, layer.handle.mountPath);
+      Object.assign(routes, _dig(layer.handle.stack, layer.handle.mountPath));
     } else if (route) {
       const routePath = path.join(prefix, route.path);
       const methods = route.methods;
@@ -117,5 +115,5 @@ function dig(stack, prefix) {
       routes[routePath] = Object.assign({}, routes[routePath], methods);
     }
   });
-
-}
+  return routes;
+};

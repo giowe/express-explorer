@@ -23,7 +23,7 @@ gulp.task('images', () => {
       progressive: true,    //jpg
       intralaced: false,    //gif
       mutlipass: false,     //svg
-      svgoPlugins: [{removeViewBox: false}],
+      svgoPlugins: [{ removeViewBox: false }],
       use: [pngquant()]
     }))
     .pipe(gulp.dest('build/static/images'));
@@ -33,7 +33,7 @@ gulp.task('sass', () => {
   return gulp.src('./src/static/styles/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('styles.min.css'))
-    .pipe(cleanCss({compatibility: 'ie8'}))
+    .pipe(cleanCss({ compatibility: 'ie8' }))
     .pipe(gulp.dest('./build/static'));
 });
 
@@ -57,6 +57,11 @@ gulp.task('package', () => {
   return gulp.src('./package.json')
     .pipe(replace('"private": true', '"private": false'))
     .pipe(replace(/,([^}]+)"devDependencies"([^}]+)}/, ''))
+    .pipe(gulp.dest('./build'));
+});
+
+gulp.task('misc', () => {
+  return gulp.src('./README.md')
     .pipe(gulp.dest('./build'));
 });
 

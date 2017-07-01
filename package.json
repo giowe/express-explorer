@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "express-explorer",
-  "version": "0.3.3",
-  "description": "",
+  "version": "0.4.0",
+  "description": "Autodiscovering route explorer for every Express.js application",
   "main": "express-explorer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,11 +17,11 @@
     "url": "https://github.com/giowe/express-explorer/issues"
   },
   "homepage": "https://github.com/giowe/express-explorer#readme",
+  "keywords": ["express", "autodiscovering", "route", "explorer", "postman"],
   "dependencies": {
     "ejs": "^2.5.6",
     "json-formatter-js": "^2.2.0",
-    "whatwg-fetch": "^2.0.3",
-    "xml-viewer": "^1.3.7"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -29,6 +29,7 @@
     "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.17.2",
     "del": "^3.0.0",
+    "eslint": "^4.1.1",
     "express": "^4.15.3",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.5.0",

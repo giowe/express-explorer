@@ -7,8 +7,8 @@ export const getRequestHeaders = (inputs) => {
     const input = inputs[i];
     let empty = false;
 
-    if (input.getAttribute('target') == 'Headers') {
-      if (input.getAttribute('placeholder') == 'key') {
+    if (input.getAttribute('target') === 'Headers') {
+      if (input.getAttribute('placeholder') === 'key') {
         empty = !input.value;
         if (!empty) headerKeys.push(input.value);
       }

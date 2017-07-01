@@ -1,5 +1,4 @@
 import JSONFormatter from 'json-formatter-js';
-import XMLViewer from 'xml-viewer';
 
 export const renderText = (text, panel, height) => {
   const staticViewer = document.createElement('div');
@@ -16,15 +15,3 @@ export const renderJSON = (json, panel) => {
   frm.element.classList.add('clearable');
   textContainer.innerHTML = textContainer.innerHTML.slice(1, -1);
 };
-
-export const renderXML = (xml, panel) => {
-  const viewer = new XMLViewer(xml);
-  viewer._el.classList.add('clearable');
-  viewer.appendTo(panel);
-};
-
-export const renderHTML = (html, panel) => {
-
-};
-
-

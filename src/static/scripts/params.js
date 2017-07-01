@@ -1,4 +1,4 @@
-import {updateSettings, getSettings} from './settings';
+import { updateSettings, getSettings } from './settings';
 
 export const getLastParam = (container) => {
   const params = container.getElementsByClassName('param');
@@ -11,19 +11,19 @@ export const getParamCount = (container) => container.getElementsByClassName('pa
 export const addParam = (context, elementID, containerID, limit = true) => {
   const container = document.getElementById(containerID);
   const childCount = container.childNodes.length;
-  const selector = (childCount == 5) ? 2 : 1;
+  const selector = childCount === 5 ? 2 : 1;
   const elem = container.childNodes[childCount - selector];
   const currentIndex = parseInt(elem.getAttribute('index'));
 
   if ((getParamCount(container) < 5)) {
-    if (!limit || getLastParam(container) == context.parentNode) {
+    if (!limit || getLastParam(container) === context.parentNode) {
       const clone = elem.cloneNode(true);
       const newIndex = (currentIndex + 1).toString();
 
       clone.setAttribute('index', newIndex);
       setNewParamIds(clone.childNodes[1], newIndex);
       setNewParamIds(clone.childNodes[3], newIndex);
-      clone.childNodes[5].style.visibility = "visible";
+      clone.childNodes[5].style.visibility = 'visible';
 
       container.appendChild(clone);
     }
@@ -59,7 +59,7 @@ export const fillParamsFromObject = (params, data) => {
 
   for (let i = 0; i < params.length; i++) {
     const param = params[i];
-    if (param.getAttribute('placeholder') == 'key') {
+    if (param.getAttribute('placeholder') === 'key') {
       param.value = keys[parseInt(i / 2)];
     }
     else {
