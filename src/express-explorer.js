@@ -13,7 +13,7 @@ let pkg;
 try {
   pkg = require('../../package.json');
 } catch(err) {
-  pkg = {}
+  pkg = {name: 'express-explorer'}
 }
 
 const routes = {};

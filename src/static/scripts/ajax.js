@@ -123,9 +123,4 @@ export const clearPanel = (panel) => {
   }
 };
 
-export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), undefined, 1);
-
-
-
-
-
+export const prettyPrint = (text) => JSON.stringify(JSON.parse(text), null, 1);

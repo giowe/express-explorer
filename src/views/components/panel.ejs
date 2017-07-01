@@ -35,10 +35,7 @@ params = getParams(route);
   <% } %>
 
  <!-- <%- include('./selector.ejs') %>-->
-  <button type="button" class="pure-button-primary sendBtn"
-          onclick="Lib.default.createRequest('<%= route %>','<%= method %>')"
-  >Test!
-  </button>
+  <button type="button" class="pure-button-primary sendBtn" onclick="Lib.default.createRequest('<%= route %>','<%= method %>')">Test!</button>
   <hr class=" closer">
   <%- include('./response.ejs',{route,method}) %>
 </form>
