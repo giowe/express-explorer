@@ -73,7 +73,7 @@ gulp.task('watch', () => {
   gulp.watch('./src/package.json', ['package']);
 });
 
-gulp.task('build', ['clean', 'images', 'sass', 'js', 'views', 'root-files', 'package']);
+gulp.task('build', ['clean', 'images', 'sass', 'js', 'views', 'root-files', 'package', 'misc']);
 
 gulp.task('serve', ['build'], () => {
   return nodemon({

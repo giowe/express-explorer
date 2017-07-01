@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "express-explorer",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Autodiscovering route explorer for every Express.js application",
   "main": "express-explorer.js",
   "scripts": {
