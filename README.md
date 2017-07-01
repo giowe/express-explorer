@@ -8,7 +8,7 @@
 
 Autodiscovering route explorer for every Express.js application.
 
-<img src="http"></img>
+<img src="https://raw.githubusercontent.com/giowe/express-explorer/master/express-explorer.png"></img>
 
 ## Installation
 ```
