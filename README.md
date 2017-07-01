@@ -29,6 +29,6 @@ const settings = {
 app.use('/explorer', explorer(settings));
 ```
 
-##Settings
+## Settings
 * `format`: `html` (default) or `json`. If param is `html` you will get the explorer panel otherwise all discovered routes are served as a json.
 Even if you chose to get the html panel you can require the json format passing the query string `?format=json` to the endpoint you chose for the explorer (ex. `/explorer?format=json`). 
